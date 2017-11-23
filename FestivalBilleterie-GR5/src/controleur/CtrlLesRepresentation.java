@@ -40,6 +40,36 @@ public class CtrlLesRepresentation implements WindowListener,ActionListener {
         }
     }
     
+    // contrôle de la vue
+    /**
+     * Remplir le composant JTable avec les adresses
+     *
+     * @param desRepresentations liste des adresses à afficher
+     */
+    private final void afficherLesRepresentation(List<Representation> desRepresentations) {
+        getVue().getModeleTableRepresentation().setRowCount(0);
+        String[] titresColonnes = {"Representation","Lieu","Date", "Heure Début", "Heure Fin"};
+        getVue().getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
+        String[] ligneDonnees = new String[5];
+        for (Representation uneRepresentation : desRepresentations) {
+            ligneDonnees[0] = uneRepresentation.getRue();
+            ligneDonnees[1] = uneRepresentation.getCp();
+            ligneDonnees[2] = uneRepresentation.getVille();
+            ligneDonnees[3] = uneRepresentation.getVille();
+            ligneDonnees[4] = uneRepresentation.getVille();
+            getVue().getModeleTableRepresentation().addRow(ligneDonnees);            
+        } 
+    }
+    
+    // ACCESSEURS et MUTATEURS
+    public VueLesRepresentations getVue() {
+        return vue;
+    }
+    
+    public void setVue(VueLesRepresentations vue) {
+        this.vue = vue;
+    }
+    
 
     @Override
     public void windowOpened(WindowEvent e) {

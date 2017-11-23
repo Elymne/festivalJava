@@ -7,7 +7,7 @@ public class TestLieu {
     public static void main(String[] args) {
         Lieu lieu1, lieu2, lieu3;
         System.out.println("\nTest n°1 : instanciation et accesseurs");
-        lieu1 = new (1, "141 route de Clisson", "44230", "Saint Sébastien sur Loire");
+        lieu1 = new ();
         System.out.println(lieu1);
         System.out.println("\nTest n°2 : mutateurs");
         lieu1.setRue("56 boulevard de la Prairie aux Ducs");
