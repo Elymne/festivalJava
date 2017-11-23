@@ -1,10 +1,14 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
- * Author:  cmetrot
- * Created: 23 nov. 2017
- */
+package vue;
 
+/**
+ *
+ * @author cmetrot
+ */
+public class qsqefesr {
+    
+}
