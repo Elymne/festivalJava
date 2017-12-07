@@ -33,10 +33,6 @@ public class VueLesRepresentations extends VueGenerique {
         return jButtonRetour;
     }
     
-    public JButton getJButtonRecherche(){
-        return jButtonRecherche;
-    }
-    
     public JTextField getJTextfieldRecherche(){
         return jTextFieldRecherche;
     }
