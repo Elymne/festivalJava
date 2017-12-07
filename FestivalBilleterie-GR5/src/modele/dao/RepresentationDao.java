@@ -21,7 +21,7 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM REPRESENTATION WHERE ID= ?";
+        String requete = "SELECT * FROM REPRESENTATION WHERE ID_REP= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, numLieu);
         rs = pstmt.executeQuery();
@@ -51,12 +51,12 @@ public class RepresentationDao {
     
      private static Representation RepresentationFromResultSet(ResultSet rs) throws SQLException {
         Representation clt = null;
-        int id = rs.getInt("ID");
+        int id = rs.getInt("ID_REP");
         String idGroupe = rs.getString("ID_GROUPE");
         int idLieu = rs.getInt("ID_LIEU");
         String dateRep = rs.getString("DATE_REP");
-        String heureDebut = rs.getString("HEUREDEBUT");
-        String heureFin = rs.getString("HEUREFIN");
+        String heureDebut = rs.getString("HEURE_DEB");
+        String heureFin = rs.getString("HEURE_FIN");
         
         Groupe objetGroupe = GroupeDao.selectOneById(idGroupe);
         Lieu objetLieu = LieuDao.selectOneById(idLieu);
