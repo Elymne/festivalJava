@@ -1,77 +1,115 @@
+
 package modele.metier;
 
+import java.util.Map.Entry;
+
 /**
- *
  * @author cmetrot
  */
 
 public class Representation {
-    
-    private int idRep;
-    private Lieu lieu;
-    private Groupe groupe;
+    private int id;
     private String dateRep;
-    private String heureDeb;
+    private String heureDebut;
     private String heureFin;
-
-    public Representation(int idRep, Lieu lieu, Groupe groupe, String dateRep, String heureDeb, String heureFin) {
-        this.idRep = idRep;
-        this.lieu = lieu;
-        this.groupe = groupe;
+    private Groupe groupe;
+    private Lieu lieu;
+    
+    public Representation(int id, String dateRep,String heureDebut, String heureFin, Groupe groupe, Lieu lieu){
+        this.id = id;
         this.dateRep = dateRep;
-        this.heureDeb = heureDeb;
+        this.heureDebut = heureDebut;
         this.heureFin = heureFin;
-    }
-
-    public int getIdRep() {
-        return idRep;
-    }
-
-    public void setIdRep(int idRep) {
-        this.idRep = idRep;
-    }
-
-    public Lieu getLieu() {
-        return lieu;
-    }
-
-    public void setLieu(Lieu lieu) {
+        this.groupe = groupe;
         this.lieu = lieu;
     }
-
-    public Groupe getGroupe() {
-        return groupe;
+    
+    public String toString(){
+        return "id = " + id + ", dateRep " + dateRep + ", heureDebut : " + heureDebut + ", heureFin : " + heureFin + ", groupe : " + groupe.toString() + ", lieu : " + lieu.toString();
     }
 
-    public void setGroupe(Groupe groupe) {
-        this.groupe = groupe;
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
     }
 
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the dateRep
+     */
     public String getDateRep() {
         return dateRep;
     }
 
+    /**
+     * @param dateRep the dateRep to set
+     */
     public void setDateRep(String dateRep) {
         this.dateRep = dateRep;
     }
 
-    public String getHeureDeb() {
-        return heureDeb;
+    /**
+     * @return the heureDebut
+     */
+    public String getHeureDebut() {
+        return heureDebut;
     }
 
-    public void setHeureDeb(String heureDeb) {
-        this.heureDeb = heureDeb;
+    /**
+     * @param heureDebut the heureDebut to set
+     */
+    public void setHeureDebut(String heureDebut) {
+        this.heureDebut = heureDebut;
     }
 
+    /**
+     * @return the heureFin
+     */
     public String getHeureFin() {
         return heureFin;
     }
 
+    /**
+     * @param heureFin the heureFin to set
+     */
     public void setHeureFin(String heureFin) {
         this.heureFin = heureFin;
     }
-    
-    
+
+    /**
+     * @return the groupe
+     */
+    public Groupe getGroupe() {
+        return groupe;
+    }
+
+    /**
+     * @param groupe the groupe to set
+     */
+    public void setGroupe(Groupe groupe) {
+        this.groupe = groupe;
+    }
+
+    /**
+     * @return the lieu
+     */
+    public Lieu getLieu() {
+        return lieu;
+    }
+
+    /**
+     * @param lieu the lieu to set
+     */
+    public void setLieu(Lieu lieu) {
+        this.lieu = lieu;
+    }
     
 }
-
