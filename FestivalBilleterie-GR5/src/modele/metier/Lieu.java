@@ -6,15 +6,15 @@ package modele.metier;
  */
 public class Lieu {
     
-    private int id;
-    private String nom;
-    private String adr;
+    private int idLieu;
+    private String nomLieu;
+    private String adrLieu;
     private int capacite;
 
-    public Lieu(int id, String nom, String adr, int capacite) {
-        this.id = id;
-        this.nom = nom;
-        this.adr = adr;
+    public Lieu(int idLieu, String nomLieu, String adrLieu, int capacite) {
+        this.idLieu = idLieu;
+        this.nomLieu = nomLieu;
+        this.adrLieu = adrLieu;
         this.capacite = capacite;
     }
 
