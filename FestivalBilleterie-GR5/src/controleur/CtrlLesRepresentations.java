@@ -16,7 +16,7 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
     public CtrlLesRepresentations(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
         vue = new VueLesRepresentations();
-        lesRepresentationsAfficher();
+        representationAfficher();
         vue.addWindowListener(this);
     }
     
@@ -32,11 +32,11 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
         ((VueEquipiers) vue).getModeleTableEquipier().setColumnIdentifiers(titresColonnes);
         try {
             String[] ligneDonnees = new String[3];
-            lesEquipiers = daoEquipier.getAll();
-            for (Equipier unEquipier : lesEquipiers) {
-                ligneDonnees[0] = unEquipier.getNom();
-                ligneDonnees[1] = unEquipier.getPrenom();
-                ligneDonnees[2] = (unEquipier.isDimanche() ? "OUI" : "");
+            lesRepresentations = RepresentationDao.selectAll();
+            for (Representation representation : lesRepresentations) {
+                ligneDonnees[0] = representation.getNom();
+                ligneDonnees[1] = representation.getPrenom();
+                ligneDonnees[2] = (representation.getWouf();
                 ((VueEquipiers) vue).getModeleTableEquipier().addRow(ligneDonnees);
             }
         } catch (Exception ex) {

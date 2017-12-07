@@ -17,7 +17,7 @@ public class Main {
      */
     public static void main(String[] args) {
         CtrlPrincipal ctrlPrincipal;    
-        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festival", "festival", "secret");
+        Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festivalbilleterie", "festival", "secret");
         try {
             Jdbc.getInstance().connecter();
         } catch (ClassNotFoundException ex) {
