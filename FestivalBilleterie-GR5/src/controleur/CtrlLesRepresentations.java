@@ -27,60 +27,52 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
     
     public void representationAfficher() {
         String msg = ""; // message à afficher en cas d'erreur
-        ((VueRepresentation) vue).getModeleTableEquipier().setRowCount(0);
-        String[] titresColonnes = {"Nom", "Prenom", "Volontaire"};
-        ((VueEquipiers) vue).getModeleTableEquipier().setColumnIdentifiers(titresColonnes);
+        ((VueLesRepresentations) vue).getModeleTableRepresentation().setRowCount(0);
+        String[] titresColonnes = {"Groupe", "Lieu", "Date","Heure de debut","Heure de fin"};
+        ((VueLesRepresentations) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
-            String[] ligneDonnees = new String[3];
+            String[] ligneDonnees = new String[5];
             lesRepresentations = RepresentationDao.selectAll();
             for (Representation representation : lesRepresentations) {
-                ligneDonnees[0] = representation.getNom();
-                ligneDonnees[1] = representation.getPrenom();
-                ligneDonnees[2] = (representation.getWouf();
-                ((VueEquipiers) vue).getModeleTableEquipier().addRow(ligneDonnees);
+                ligneDonnees[0] = representation.getGroupe().getNom();
+                ligneDonnees[1] = representation.getLieu().getNom();
+                ligneDonnees[2] = representation.getDateRep();
+                ligneDonnees[3] = representation.getHeureDebut();
+                ligneDonnees[4] = representation.getHeureFin();
+                ((VueLesRepresentations) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             }
         } catch (Exception ex) {
-            msg = "CtrlEquipiers - equipiersAfficher() - " + ex.getMessage();
-            JOptionPane.showMessageDialog(vue, msg, "Affichage des équipiers", JOptionPane.ERROR_MESSAGE);
+            msg = "Erreur dans la methode representationAfficher" + ex.getMessage();
+            JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
-    
 
     @Override
     public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosing(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     }
     
 }

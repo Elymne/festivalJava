@@ -6,6 +6,8 @@ package controleur;
 import static controleur.EnumAction.*;
 import javax.swing.JOptionPane;
 import modele.jdbc.Jdbc;
+import vue.VueMenu;
+import vue.VueLesRepresentations;
 
 public class CtrlPrincipal {
     
@@ -52,7 +54,7 @@ public class CtrlPrincipal {
             //ctrlLesRepresentations.actualiser(); Methode de la classe DaoRepresentation
         }
         ctrlMenu.getVue().setEnabled(false);
-        ctrlLesRepresentations.getVue().setEnabled(true);
+        ctrlLesRepresentations.getVue().setVisible(true);
     }
     
     private void menuQuitterRepresentation(){

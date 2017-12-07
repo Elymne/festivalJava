@@ -21,7 +21,7 @@ public class LieuDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM LIEU WHERE ID= ?";
+        String requete = "SELECT * FROM lieu WHERE ID= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, numLieu);
         rs = pstmt.executeQuery();
@@ -38,7 +38,7 @@ public class LieuDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM LIEU";
+        String requete = "SELECT * FROM lieu";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {

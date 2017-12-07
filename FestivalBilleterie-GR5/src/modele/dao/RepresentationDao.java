@@ -21,7 +21,7 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM REPRESENTATION WHERE ID_REP= ?";
+        String requete = "SELECT * FROM representation WHERE ID_REP= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setInt(1, numLieu);
         rs = pstmt.executeQuery();
@@ -38,7 +38,7 @@ public class RepresentationDao {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM REPRESENTATION";
+        String requete = "SELECT * FROM representation";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
