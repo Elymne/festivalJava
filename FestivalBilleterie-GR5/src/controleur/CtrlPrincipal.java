@@ -15,6 +15,7 @@ public class CtrlPrincipal {
     public void action(){
         if(ctrlMenu == null){
             ctrlMenu = new CtrlMenu(this);
+            ctrlMenu.getVue().setTitle("Festival");
         }
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true);
@@ -52,7 +53,7 @@ public class CtrlPrincipal {
             //ctrlLesRepresentations.actualiser(); Methode de la classe DaoRepresentation
         }
         ctrlMenu.getVue().setEnabled(false);
-        ctrlLesRepresentations.getVue().setEnabled(true);
+        ctrlLesRepresentations.getVue().setVisible(true);
     }
     
     private void menuQuitterRepresentation(){

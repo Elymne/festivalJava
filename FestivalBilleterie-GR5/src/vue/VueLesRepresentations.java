@@ -15,11 +15,12 @@ import javax.swing.table.DefaultTableModel;
  */
 
 
-public class VueLesRepresentations extends javax.swing.JFrame {
+public class VueLesRepresentations extends VueGenerique {
 
     private DefaultTableModel modeleTableRepresentation;
 
     public VueLesRepresentations() {
+        super();
         initComponents();
         modeleTableRepresentation = new DefaultTableModel();
         jTableRepresentation.setModel(modeleTableRepresentation);
@@ -34,7 +35,7 @@ public class VueLesRepresentations extends javax.swing.JFrame {
     }
     
     public JButton getJButtonRecherche(){
-        return jButtonRecherche;
+        return jButtonAjouter;
     }
     
     public JTextField getJTextfieldRecherche(){
@@ -54,7 +55,7 @@ public class VueLesRepresentations extends javax.swing.JFrame {
         jScrollPaneMain = new javax.swing.JScrollPane();
         jTableRepresentation = new javax.swing.JTable();
         jTextFieldRecherche = new javax.swing.JTextField();
-        jButtonRecherche = new javax.swing.JButton();
+        jButtonAjouter = new javax.swing.JButton();
         jButtonRetour = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -78,7 +79,7 @@ public class VueLesRepresentations extends javax.swing.JFrame {
 
         jTextFieldRecherche.setText("jTextField1");
 
-        jButtonRecherche.setText("Recherche");
+        jButtonAjouter.setText("Ajouter");
 
         jButtonRetour.setText("Retour");
 
@@ -88,21 +89,20 @@ public class VueLesRepresentations extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelLesRepresentations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPaneMain, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabelLesRepresentations, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTextFieldRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonRetour)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPaneMain, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonRetour))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAjouter, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextFieldRecherche)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,11 +111,11 @@ public class VueLesRepresentations extends javax.swing.JFrame {
                 .addComponent(jLabelLesRepresentations, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPaneMain, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRecherche))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                    .addComponent(jButtonAjouter)
+                    .addComponent(jTextFieldRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jButtonRetour, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -158,7 +158,7 @@ public class VueLesRepresentations extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonRecherche;
+    private javax.swing.JButton jButtonAjouter;
     private javax.swing.JButton jButtonRetour;
     private javax.swing.JLabel jLabelLesRepresentations;
     private javax.swing.JScrollPane jScrollPaneMain;
