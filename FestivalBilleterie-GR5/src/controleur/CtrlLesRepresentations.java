@@ -31,19 +31,22 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
    public void representationAfficher() {
         String msg = ""; // message à afficher en cas d'erreur
         ((VueLesRepresentations) vue).getModeleTableRepresentation().setRowCount(0);
-        String[] titresColonnes = {"Nom", "Prenom", "Volontaire"};
+        String[] titresColonnes = {"Groupe", "Lieu", "Date","Heure de debut","Heure de fin"};
         ((VueLesRepresentations) vue).getModeleTableRepresentation().setColumnIdentifiers(titresColonnes);
         try {
-            String[] ligneDonnees = new String[2];
+            String[] ligneDonnees = new String[5];
             lesRepresentations = RepresentationDao.selectAll();
             for (Representation representation : lesRepresentations) {
-                ligneDonnees[0] = representation.getDateRep();
-                ligneDonnees[1] = representation.getHeureDebut();
+                ligneDonnees[0] = representation.getGroupe().getNom();
+                ligneDonnees[1] = representation.getLieu().getNom();
+                ligneDonnees[2] = representation.getDateRep();
+                ligneDonnees[3] = representation.getHeureDebut();
+                ligneDonnees[4] = representation.getHeureFin();
                 ((VueLesRepresentations) vue).getModeleTableRepresentation().addRow(ligneDonnees);
             }
         } catch (Exception ex) {
-            msg = "CtrlEquipiers - equipiersAfficher() - " + ex.getMessage();
-            JOptionPane.showMessageDialog(vue, msg, "Affichage des équipiers", JOptionPane.ERROR_MESSAGE);
+            msg = "Erreur dans la methode representationAfficher" + ex.getMessage();
+            JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -82,5 +85,4 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
             representationQuitter();
         }
     }
-    
 }

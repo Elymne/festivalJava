@@ -6,6 +6,7 @@ import java.util.Map.Entry;
 /**
  * @author cmetrot
  */
+
 public class Representation {
     private int id;
     private String dateRep;
@@ -110,6 +111,5 @@ public class Representation {
     public void setLieu(Lieu lieu) {
         this.lieu = lieu;
     }
-    
     
 }

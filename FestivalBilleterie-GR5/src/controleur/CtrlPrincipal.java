@@ -6,6 +6,8 @@ package controleur;
 import static controleur.EnumAction.*;
 import javax.swing.JOptionPane;
 import modele.jdbc.Jdbc;
+import vue.VueMenu;
+import vue.VueLesRepresentations;
 
 public class CtrlPrincipal {
     
