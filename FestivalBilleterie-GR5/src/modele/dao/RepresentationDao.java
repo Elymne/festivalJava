@@ -31,6 +31,23 @@ public class RepresentationDao {
         return representation;
     }
     
+    public static Representation selectOneByIdGroupe(String numGroupe) throws SQLException {
+        Representation representation = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "SELECT * FROM representation WHERE ID_GROUPE= ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setString(1, numGroupe);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            representation = RepresentationDao.RepresentationFromResultSet(rs);
+        }
+        return representation;
+    }
+
+    
     public static ArrayList<Representation> selectAll() throws SQLException {
         ArrayList<Representation> lesRepresentations = new ArrayList<Representation>();
         Representation lieu = null;

@@ -26,6 +26,22 @@ public class GroupeDao{
         }
         return groupe;
     }
+    
+    public static Groupe selectOneByName(String nomGroupe) throws SQLException {
+        Groupe groupe = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "SELECT * FROM groupe WHERE NOM= ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setString(1, nomGroupe);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            groupe = GroupeDao.groupeFromResultSet(rs);
+        }
+        return groupe;
+    }
 
     /**
      * lire tous les enregistrements de la table CLIENT
