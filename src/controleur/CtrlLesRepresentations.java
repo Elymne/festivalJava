@@ -41,6 +41,8 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
     }
     
     
+    
+    
    public void representationAfficher() {
         String msg = ""; // message à afficher en cas d'erreur
         ((VueLesRepresentations) vue).getModeleTableRepresentation().setRowCount(0);
@@ -124,6 +126,10 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonRetour())){
             representationQuitter();
+        }else{
+            if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonVendre())){
+                representationQuitter();
+            }
         }
     }
 

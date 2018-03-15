@@ -40,6 +40,10 @@ public class VueLesRepresentations extends VueGenerique {
         return jButtonRetour;
     }
     
+    public JButton getJButtonVendre(){
+        return jButtonVente;
+    }
+    
     public JTextField getJTextFieldNom(){
         return jTextFieldNom;
     }
