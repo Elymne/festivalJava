@@ -15,15 +15,15 @@ import modele.metier.Representation;
  */
 public class RepresentationDao {
     
-    public static Representation selectOneById(int numLieu) throws SQLException {
+    public static Representation selectOneById(int idRep) throws SQLException {
         Representation representation = null;
         ResultSet rs = null;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM representation WHERE ID_REP= ?";
+        String requete = "SELECT * FROM representation WHERE ID_REP = ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
-        pstmt.setInt(1, numLieu);
+        pstmt.setInt(1, idRep);
         rs = pstmt.executeQuery();
         if (rs.next()) {
             representation = RepresentationDao.RepresentationFromResultSet(rs);
@@ -65,19 +65,64 @@ public class RepresentationDao {
         return lesRepresentations;
     }
     
+    public static void update(int idRep, int nbPlaces) throws SQLException
+    {
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "UPDATE representation SET NBPLACESDISPO = NBPLACESDISPO + ? WHERE ID_REP = ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, nbPlaces);
+        pstmt.setInt(2, idRep);
+        pstmt.executeUpdate();
+    }
+    
+    public static Representation insert(int id_rep, int id_lieu, String id_groupe, int nbPlacesDispo, String date_rep, String heure_deb, String heure_fin) throws SQLException {
+        Representation representation = null;
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "INSERT INTO representation VALUES (?,?,?,?,?,?,?)";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, id_rep);
+        pstmt.setInt(2, id_lieu);
+        pstmt.setString(3, id_groupe);
+        pstmt.setInt(4, nbPlacesDispo);
+        pstmt.setString(5, date_rep);
+        pstmt.setString(6, heure_deb);
+        pstmt.setString(7, heure_fin);
+        rs = pstmt.executeQuery();
+        if (rs.next()) {
+            representation = RepresentationDao.RepresentationFromResultSet(rs);
+        }
+        return representation;
+    }
+    
+    public static void delete(int idRep) throws SQLException {
+        ResultSet rs = null;
+        PreparedStatement pstmt;
+        Jdbc jdbc = Jdbc.getInstance();
+        // préparer la requête
+        String requete = "DELETE FROM Representation WHERE ID_REP = ?";
+        pstmt = jdbc.getConnexion().prepareStatement(requete);
+        pstmt.setInt(1, idRep);
+        rs = pstmt.executeQuery();
+    }
     
      private static Representation RepresentationFromResultSet(ResultSet rs) throws SQLException {
         Representation clt = null;
         int id = rs.getInt("ID_REP");
         String idGroupe = rs.getString("ID_GROUPE");
         int idLieu = rs.getInt("ID_LIEU");
+        int nbPlacesDispo = rs.getInt("NBPLACESDISPO");
         String dateRep = rs.getString("DATE_REP");
         String heureDebut = rs.getString("HEURE_DEB");
         String heureFin = rs.getString("HEURE_FIN");
         
         Groupe objetGroupe = GroupeDao.selectOneById(idGroupe);
         Lieu objetLieu = LieuDao.selectOneById(idLieu);
-        clt = new Representation(id,dateRep,heureDebut,heureFin, objetGroupe,objetLieu);
+        clt = new Representation(id,dateRep,heureDebut,heureFin, objetGroupe,objetLieu,nbPlacesDispo);
         return clt;
     }
     

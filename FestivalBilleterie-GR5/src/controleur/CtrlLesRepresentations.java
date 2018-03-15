@@ -36,6 +36,7 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
     }
     
     public void  representationQuitter(){
+        ResetGroupe();
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION_QUITTER);
     }
     
@@ -66,7 +67,6 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
             try {
                 Groupe nomGroupe = GroupeDao.selectOneByName(cellule);
                 Representation representation = RepresentationDao.selectOneByIdGroupe(nomGroupe.getId());
-                System.out.println(representation.toString());
                 
                 //Insérer les valeurs d'un groupe sélectionné.
                 ((VueLesRepresentations) vue).getJTextFieldNom().setText(representation.getGroupe().getNom());
@@ -80,6 +80,14 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
         }
    }
    
+   public void ResetGroupe(){
+                ((VueLesRepresentations) vue).getJTextFieldNom().setText("");
+                ((VueLesRepresentations) vue).getJTextFieldLieu().setText("");
+                ((VueLesRepresentations) vue).getJTextFieldDate().setText("");
+                ((VueLesRepresentations) vue).getJTextFieldHeureDebut().setText("");
+                ((VueLesRepresentations) vue).getJTextFieldHeureFin().setText("");
+   }
+   
    
 
     @Override
@@ -88,6 +96,7 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
 
     @Override
     public void windowClosing(WindowEvent e) {
+        ResetGroupe();
         representationQuitter();
     }
 

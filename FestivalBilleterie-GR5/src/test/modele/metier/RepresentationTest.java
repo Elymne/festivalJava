@@ -15,11 +15,11 @@ public class RepresentationTest {
         
         Groupe grp = new Groupe("id","nomGroupe","identite","adresse",40,"nomPays","hebergement");
         Lieu lieu = new Lieu(1,"nomLieu","ad",1111111110);
-        Representation rep = new Representation(2,"dateRep","heureDebut", "heureFin",grp,lieu);
+        Representation rep = new Representation(2,"dateRep","heureDebut", "heureFin",grp,lieu,1000);
         System.out.println("\nTest n°1 : instanciation et accesseurs");
         
         System.out.println(rep.toString());
-        System.out.println("\nTest n°2 : mutateurs");
+        System.out.println("\nTest n°2 : mutateurs changement de date : Nouvelle Date -> Nouvelle valeur");
         rep.setDateRep("Nouvelle Date");
         System.out.println(rep.toString());
         }

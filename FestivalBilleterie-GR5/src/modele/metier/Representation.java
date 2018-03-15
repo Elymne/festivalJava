@@ -14,18 +14,20 @@ public class Representation {
     private String heureFin;
     private Groupe groupe;
     private Lieu lieu;
+    private int nbPlacesDispo;
     
-    public Representation(int id, String dateRep,String heureDebut, String heureFin, Groupe groupe, Lieu lieu){
+    public Representation(int id, String dateRep,String heureDebut, String heureFin, Groupe groupe, Lieu lieu, int nbPlacesDispo){
         this.id = id;
         this.dateRep = dateRep;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.groupe = groupe;
         this.lieu = lieu;
+       this. nbPlacesDispo = nbPlacesDispo;
     }
     
     public String toString(){
-        return "id = " + id + ", dateRep " + dateRep + ", heureDebut : " + heureDebut + ", heureFin : " + heureFin + ", groupe : " + groupe.toString() + ", lieu : " + lieu.toString();
+        return "id = " + id + ", dateRep " + dateRep + ", heureDebut : " + heureDebut + ", heureFin : " + heureFin + ", groupe : " + groupe.toString() + ", lieu : " + lieu.toString() + " Nombre Places Restante : " + nbPlacesDispo;
     }
 
     /**
@@ -110,6 +112,20 @@ public class Representation {
      */
     public void setLieu(Lieu lieu) {
         this.lieu = lieu;
+    }
+
+    /**
+     * @return the nbPlacesDispo
+     */
+    public int getNbPlacesDispo() {
+        return nbPlacesDispo;
+    }
+
+    /**
+     * @param nbPlacesDispo the nbPlacesDispo to set
+     */
+    public void setNbPlacesDispo(int nbPlacesDispo) {
+        this.nbPlacesDispo = nbPlacesDispo;
     }
     
 }
