@@ -41,8 +41,13 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION_QUITTER);
     }
     
-    public void representationVente(){  
-        this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE);
+    public void representationVente(){
+        int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
+        int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
+        if (ligne != -1 && colonne != -1){
+            String groupe = (String) ((VueLesRepresentations) vue).getModeleTableRepresentation().getValueAt(ligne,colonne);
+            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE,groupe);
+        }
     }
     
     
@@ -83,6 +88,18 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
                 Logger.getLogger(CtrlLesRepresentations.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+   }
+   
+   public boolean verifCellule(){
+       boolean test;
+       int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
+       int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
+       if (ligne != -1 && colonne != -1){
+           test = true;
+       }else{
+           test = false;
+       }
+       return test;
    }
    
    public void ResetGroupe(){
@@ -132,7 +149,11 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
             System.out.print("BOUTTON QUITTER");
         }else{
             if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonVente())){
-                representationVente();
+                if(!verifCellule()){
+                    JOptionPane.showMessageDialog(null,"Représentation non sélectionnée.","Inane error",JOptionPane.ERROR_MESSAGE);
+                }else{
+                    representationVente();
+                }               
             }
         }
     }

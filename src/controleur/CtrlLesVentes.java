@@ -31,18 +31,20 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
     private final RepresentationDao daoRepresentation = new RepresentationDao();
     private Representation uneRep;
     
-    public CtrlLesVentes(CtrlPrincipal ctrlPrincipal) {
+    public CtrlLesVentes(CtrlPrincipal ctrlPrincipal, String groupe) {
         super(ctrlPrincipal);
         vue = new VueLesVentes();
-        venteAfficher();
+        venteAfficher(groupe);
+        ((VueLesVentes) vue).getJButtonRetour().addActionListener(this);
+        ((VueLesVentes) vue).getjButtonCommande().addActionListener(this);
         
     }
     
     
-    public void venteAfficher() {
+    public void venteAfficher(String groupe) {
         String msg = ""; // message à afficher en cas d'erreur
         try {
-            Groupe nomGroupe = GroupeDao.selectOneByName("Boxty");
+            Groupe nomGroupe = GroupeDao.selectOneByName(groupe);
             uneRep = RepresentationDao.selectOneByIdGroupe(nomGroupe.getId());
             ((VueLesVentes) vue).getJTextFieldNom().setText(uneRep.getGroupe().getNom());
             ((VueLesVentes) vue).getJTextFieldLieu().setText(uneRep.getLieu().getNom());
@@ -56,8 +58,26 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
         }
     }
     
+    public void venteSoustraire() throws SQLException{
+        int vente = Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText());
+        RepresentationDao.update(uneRep.getId(), vente);
+        reinitialisation();
+        venteAfficher(uneRep.getGroupe().getNom());
+    }
+    
+    public void reinitialisation(){
+        ((VueLesVentes) vue).getJTextFieldNom().setText(uneRep.getGroupe().getNom());
+            ((VueLesVentes) vue).getJTextFieldLieu().setText("");
+            ((VueLesVentes) vue).getJTextFieldDate().setText("");
+            ((VueLesVentes) vue).getJTextFieldHeureDebut().setText("");
+            ((VueLesVentes) vue).getJTextFieldHeureFin().setText("");
+            ((VueLesVentes) vue).getjTextFieldNbPlace().setText("");
+    }
+    
     public void  venteQuitter(){
+        reinitialisation();
         this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE_QUITTER);
+        System.out.print("QUITTER VUE VENTE");
     }
 
     @Override
@@ -91,6 +111,23 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(e.getSource().equals(((VueLesVentes) vue).getJButtonRetour())){
+            venteQuitter();
+        }else{
+            if(e.getSource().equals(((VueLesVentes) vue).getjButtonCommande())){
+                if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    try {
+                        venteSoustraire();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(CtrlLesVentes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    // no option
+                }
+                
+            }
+            
+        }
     }
 
     @Override

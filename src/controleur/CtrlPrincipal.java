@@ -21,7 +21,8 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true);
     }
-
+    
+    // Appel d'un constructeur sans échange de variable
     public void action(EnumAction action) {
         switch (action) {
             case MENU_REPRESENTATION: // activation de vuePresence depuis vueMenu
@@ -33,14 +34,20 @@ public class CtrlPrincipal {
             case MENU_QUITTER: // fin de l'application depuis vueMenu
                 menuQuitter();
                 break;
-            case REPRESENTATION_VENTE: //activation vueVente depuis la vueRepresentation
-                representationVente();
-                break;
             case REPRESENTATION_VENTE_QUITTER:
                 representationVenteQuitter();
                 break;       
         }
 
+    }
+    
+    // Appel d'un constructeur avec appel de variable (Nombre : 1, Type : String )
+    public void action(EnumAction action, String var){
+        switch (action){
+            case REPRESENTATION_VENTE: //activation vueVente depuis la vueRepresentation
+                representationVente(var);
+                break; 
+        }
     }
     
     private void menuQuitter(){
@@ -58,8 +65,6 @@ public class CtrlPrincipal {
     private void MenuRepresentation(){
         if(ctrlLesRepresentations == null){
             ctrlLesRepresentations = new CtrlLesRepresentations(this);
-        }else{
-            //ctrlLesRepresentations.actualiser(); Methode de la classe DaoRepresentation
         }
         ctrlMenu.getVue().setEnabled(false);
         ctrlLesRepresentations.getVue().setVisible(true);
@@ -74,9 +79,9 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setVisible(true); // Inutile je crois
     }
     
-    private void representationVente(){
+    private void representationVente(String groupe){
         if(ctrlLesVentes == null){
-            ctrlLesVentes = new CtrlLesVentes(this);
+            ctrlLesVentes = new CtrlLesVentes(this, groupe);
         }
         ctrlLesVentes.getVue().setVisible(true);
         ctrlLesRepresentations.getVue().setEnabled(false);
@@ -87,6 +92,7 @@ public class CtrlPrincipal {
             ctrlLesRepresentations = new CtrlLesRepresentations(this);
         }
         ctrlLesVentes.getVue().setVisible(false);
+        ctrlLesVentes = null;
         ctrlLesRepresentations.getVue().setEnabled(true);
         ctrlLesRepresentations.getVue().setVisible(true); // Inutile je crois
     }
