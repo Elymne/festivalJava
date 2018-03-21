@@ -6,8 +6,6 @@ package controleur;
 import static controleur.EnumAction.*;
 import javax.swing.JOptionPane;
 import modele.jdbc.Jdbc;
-import vue.VueMenu;
-import vue.VueLesRepresentations;
 
 public class CtrlPrincipal {
     
@@ -34,6 +32,12 @@ public class CtrlPrincipal {
             case MENU_QUITTER: // fin de l'application depuis vueMenu
                 menuQuitter();
                 break;
+            case REPRESENTATION_VENTE: //activation vueVente depuis la vueRepresentation
+                representationVente();
+                break;
+            case REPRESENTATION_VENTE_QUITTER:
+                representationVenteQuitter();
+                break;       
         }
 
     }
@@ -47,7 +51,9 @@ public class CtrlPrincipal {
             System.exit(0);
         }
     }
-
+    
+    
+    
     private void MenuRepresentation(){
         if(ctrlLesRepresentations == null){
             ctrlLesRepresentations = new CtrlLesRepresentations(this);
@@ -64,7 +70,24 @@ public class CtrlPrincipal {
         }
         ctrlLesRepresentations.getVue().setVisible(false);
         ctrlMenu.getVue().setEnabled(true);
-        ctrlMenu.getVue().setVisible(true);
+        ctrlMenu.getVue().setVisible(true); // Inutile je crois
+    }
+    
+    private void representationVente(){
+        if(ctrlLesVentes == null){
+            ctrlLesVentes = new CtrlLesVentes(this);
+        }
+        ctrlLesVentes.getVue().setVisible(true);
+        ctrlLesRepresentations.getVue().setEnabled(false);
+    }
+    
+    private void representationVenteQuitter(){
+        if(ctrlLesVentes == null){
+            ctrlLesVentes = new CtrlLesVentes(this);
+        }
+        ctrlLesVentes.getVue().setVisible(false);
+        ctrlLesRepresentations.getVue().setEnabled(true);
+        ctrlLesRepresentations.getVue().setVisible(true); // Inutile je crois
     }
     
 }

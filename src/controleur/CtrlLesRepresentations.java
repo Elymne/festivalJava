@@ -40,7 +40,10 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION_QUITTER);
     }
     
-    
+    public void representationVente(){  
+        ResetGroupe();
+        this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE);
+    }
     
     
    public void representationAfficher() {
@@ -128,7 +131,7 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
             representationQuitter();
         }else{
             if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonVendre())){
-                representationQuitter();
+                representationVente();
             }
         }
     }
