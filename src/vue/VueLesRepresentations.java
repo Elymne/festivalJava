@@ -35,14 +35,14 @@ public class VueLesRepresentations extends VueGenerique {
         return jTableRepresentation;
     }
     
+    public JButton getJButtonVente(){
+        return jButtonVente;
+    }
         
     public JButton getJButtonRetour(){
         return jButtonRetour;
     }
     
-    public JButton getJButtonVendre(){
-        return jButtonVente;
-    }
     
     public JTextField getJTextFieldNom(){
         return jTextFieldNom;

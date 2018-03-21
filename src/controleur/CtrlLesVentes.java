@@ -20,13 +20,14 @@ import modele.dao.GroupeDao;
 import modele.dao.RepresentationDao;
 import modele.metier.Groupe;
 import modele.metier.Representation;
-import vue.VueLesRepresentations;
+import vue.VueLesVentes;
 
 /**
  *
  * @author btssio
  */
 public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,ActionListener,MouseListener{
+    
     private final RepresentationDao daoRepresentation = new RepresentationDao();
     private Representation uneRep;
     
@@ -35,58 +36,25 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
         vue = new VueLesVentes();
         venteAfficher();
         
-        vue.addWindowListener(this);
-        ((VueLesRepresentations) vue).getJButtonRetour().addActionListener(this);
     }
     
     
     public void venteAfficher() {
         String msg = ""; // message à afficher en cas d'erreur
         try {
-            String[] ligneDonnees = new String[1];
-            uneRep = RepresentationDao.selectOneById(x);
-            ((vueLesVentes) vue).getJTextFieldNom().setText(uneRep.getGroupe().getNom());
+            Groupe nomGroupe = GroupeDao.selectOneByName("Boxty");
+            uneRep = RepresentationDao.selectOneByIdGroupe(nomGroupe.getId());
+            ((VueLesVentes) vue).getJTextFieldNom().setText(uneRep.getGroupe().getNom());
+            ((VueLesVentes) vue).getJTextFieldLieu().setText(uneRep.getLieu().getNom());
+            ((VueLesVentes) vue).getJTextFieldDate().setText(uneRep.getDateRep());
+            ((VueLesVentes) vue).getJTextFieldHeureDebut().setText(uneRep.getHeureDebut());
+            ((VueLesVentes) vue).getJTextFieldHeureFin().setText(uneRep.getHeureFin());
+            ((VueLesVentes) vue).getjTextFieldNbPlace().setText(Integer.toString(uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo()));
         } catch (Exception ex) {
             msg = "Erreur dans la methode representationAfficher" + ex.getMessage();
             JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
-    
-}
-   
-   
-   public void reinitialisationGroupe(){
-        int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
-        int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
-        if (ligne != -1 && colonne != -1){
-            String cellule = (String) ((VueLesRepresentations) vue).getModeleTableRepresentation().getValueAt(ligne,colonne);
-            try {
-                Groupe nomGroupe = GroupeDao.selectOneByName(cellule);
-                Representation representation = RepresentationDao.selectOneByIdGroupe(nomGroupe.getId());
-                
-                //Insérer les valeurs d'un groupe sélectionné.
-                ((VueLesRepresentations) vue).getJTextFieldNom().setText(representation.getGroupe().getNom());
-                ((VueLesRepresentations) vue).getJTextFieldLieu().setText(representation.getLieu().getNom());
-                ((VueLesRepresentations) vue).getJTextFieldDate().setText(representation.getDateRep());
-                ((VueLesRepresentations) vue).getJTextFieldHeureDebut().setText(representation.getHeureDebut());
-                ((VueLesRepresentations) vue).getJTextFieldHeureFin().setText(representation.getHeureFin());
-            } catch (SQLException ex) {
-                Logger.getLogger(CtrlLesRepresentations.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-   }
-   
-   public void ResetGroupe(){
-                ((VueLesRepresentations) vue).getJTextFieldNom().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldLieu().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldDate().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldHeureDebut().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldHeureFin().setText("");
-   }
-   
-   
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -94,8 +62,6 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
 
     @Override
     public void windowClosing(WindowEvent e) {
-        ResetGroupe();
-        representationQuitter();
     }
 
     @Override
@@ -120,18 +86,10 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonRetour())){
-            representationQuitter();
-        }else{
-            if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonVendre())){
-                representationQuitter();
-            }
-        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        reinitialisationGroupe();
     }
 
     @Override
@@ -147,7 +105,6 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e) {       
     }
-    
 }
