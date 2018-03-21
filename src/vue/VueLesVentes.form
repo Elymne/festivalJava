@@ -37,7 +37,7 @@
                       </Group>
                   </Group>
                   <Component id="jButtonRetour" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelVente" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                  <Component id="jLabelVente" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="88" max="32767" attributes="0"/>
           </Group>
@@ -278,7 +278,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel3" pref="130" max="32767" attributes="0"/>
+                      <Component id="jLabel3" pref="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldCommande" max="32767" attributes="0"/>
                       <Component id="jButtonCommande" alignment="0" max="32767" attributes="0"/>
                   </Group>
@@ -307,11 +307,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldCommande">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldCommandeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonCommande">
           <Properties>
             <Property name="text" type="java.lang.String" value="VENDRE"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCommandeActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

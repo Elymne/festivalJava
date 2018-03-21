@@ -208,7 +208,18 @@ public class VueLesVentes extends VueGenerique {
 
         jLabel3.setText("Nombre de place à vendre");
 
+        jTextFieldCommande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCommandeActionPerformed(evt);
+            }
+        });
+
         jButtonCommande.setText("VENDRE");
+        jButtonCommande.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCommandeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -217,7 +228,7 @@ public class VueLesVentes extends VueGenerique {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jTextFieldCommande)
                     .addComponent(jButtonCommande, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -250,7 +261,7 @@ public class VueLesVentes extends VueGenerique {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jButtonRetour)
-                    .addComponent(jLabelVente, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelVente))
                 .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -284,6 +295,14 @@ public class VueLesVentes extends VueGenerique {
     private void jTextFieldNbPlaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNbPlaceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNbPlaceActionPerformed
+
+    private void jButtonCommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCommandeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCommandeActionPerformed
+
+    private void jTextFieldCommandeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCommandeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCommandeActionPerformed
 
     /**
      * @param args the command line arguments

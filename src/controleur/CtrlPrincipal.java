@@ -10,6 +10,7 @@ import modele.jdbc.Jdbc;
 public class CtrlPrincipal {
     
     private CtrlLesRepresentations ctrlLesRepresentations = null;
+    private CtrlLesVentes ctrlLesVentes = null;
     private CtrlMenu ctrlMenu = null;
     
     public void action(){
