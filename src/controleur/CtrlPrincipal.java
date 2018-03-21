@@ -83,8 +83,8 @@ public class CtrlPrincipal {
     }
     
     private void representationVenteQuitter(){
-        if(ctrlLesVentes == null){
-            ctrlLesVentes = new CtrlLesVentes(this);
+        if(ctrlLesRepresentations == null){
+            ctrlLesRepresentations = new CtrlLesRepresentations(this);
         }
         ctrlLesVentes.getVue().setVisible(false);
         ctrlLesRepresentations.getVue().setEnabled(true);

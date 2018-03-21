@@ -91,7 +91,7 @@ public class VueLesVentes extends VueGenerique {
         jTextFieldCommande = new javax.swing.JTextField();
         jButtonCommande = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         jLabelVente.setText("VENTE DE PLACE");
         jLabelVente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

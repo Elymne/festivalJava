@@ -55,6 +55,10 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
             JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void  venteQuitter(){
+        this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE_QUITTER);
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -62,6 +66,7 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
 
     @Override
     public void windowClosing(WindowEvent e) {
+        venteQuitter();
     }
 
     @Override
