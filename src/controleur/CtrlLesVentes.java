@@ -12,7 +12,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -60,6 +59,7 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
     
     public void venteSoustraire() throws SQLException{
         int vente = Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText());
+
         RepresentationDao.update(uneRep.getId(), vente);
         reinitialisation();
         venteAfficher(uneRep.getGroupe().getNom());
@@ -115,16 +115,19 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
             venteQuitter();
         }else{
             if(e.getSource().equals(((VueLesVentes) vue).getjButtonCommande())){
-                if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if(uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo() < Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText())){
+                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ (uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo()),"Inane error",JOptionPane.ERROR_MESSAGE);
+                }else{
+                    if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     try {
                         venteSoustraire();
                     } catch (SQLException ex) {
                         Logger.getLogger(CtrlLesVentes.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } else {
-                    // no option
+                    } else {
+                        // no option
+                    }
                 }
-                
             }
             
         }
