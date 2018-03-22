@@ -12,6 +12,7 @@ public class CtrlPrincipal {
     private CtrlLesRepresentations ctrlLesRepresentations = null;
     private CtrlLesVentes ctrlLesVentes = null;
     private CtrlMenu ctrlMenu = null;
+    private CtrlAuthentification ctrlAuthentification = null;
     
     public void action(){
         if(ctrlMenu == null){
@@ -27,6 +28,9 @@ public class CtrlPrincipal {
         switch (action) {
             case MENU_REPRESENTATION: // activation de vuePresence depuis vueMenu
                 MenuRepresentation();
+                break;
+            case MENU_AUTHENTIFICATION: // activation de vuePresence depuis vueMenu
+                MenuAuthentification();
                 break;
             case MENU_REPRESENTATION_QUITTER:    // retour à vueMenu depuis la vuePresence
                 menuQuitterRepresentation();
@@ -78,6 +82,16 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true); // Inutile je crois
     }
+    
+        private void MenuAuthentification(){
+        if(ctrlMenu == null){
+            ctrlMenu = new CtrlMenu(this);
+        }
+        ctrlAuthentification.getVue().setVisible(false);
+        ctrlMenu.getVue().setEnabled(true);
+        ctrlMenu.getVue().setVisible(true); // Inutile je crois
+    }
+    
     
     private void representationVente(String groupe){
         if(ctrlLesVentes == null){
