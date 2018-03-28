@@ -40,9 +40,11 @@ public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowLis
     public void representationAcces(){
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION);
     }
-    
-    public void authentificationAcces(){
-        this.getCtrlPrincipal().action(EnumAction.MENU_AUTHENTIFICATION);
+    /*
+    Methode Deconnexion
+    */
+    public void deconnexionMenu(){
+        this.getCtrlPrincipal().action(EnumAction.MENU_DECONNEXION);
     }
     
     @Override
@@ -59,9 +61,10 @@ public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowLis
         }else{
             if(e.getSource().equals(getVue().getJButtonRepresentation())){
             representationAcces();
-            }
-            if(e.getSource().equals(getVue().getJButtonAuthentification())){
-            authentificationAcces();
+            }else{
+                if(e.getSource().equals(getVue().getJButtonAuthentification())){
+                    deconnexionMenu();
+                }   
             }
         }
     }

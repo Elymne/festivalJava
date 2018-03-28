@@ -27,9 +27,9 @@
               <EmptySpace pref="95" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="jLabel1" pref="209" max="32767" attributes="0"/>
-                  <Component id="jButtonValidation" min="-2" max="-2" attributes="0"/>
                   <Component id="jTextFieldMdp" alignment="0" pref="209" max="32767" attributes="0"/>
                   <Component id="jTextFieldLogin" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jButtonConnexion" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="96" max="32767" attributes="0"/>
           </Group>
@@ -44,36 +44,30 @@
               <Component id="jTextFieldLogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jTextFieldMdp" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButtonValidation" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="85" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButtonConnexion" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="jTextFieldLogin">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Login"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLoginActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldMdp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Mot de passe"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldMdpActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonValidation">
+    <Component class="javax.swing.JButton" name="jButtonConnexion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valider"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonValidationActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonConnexionActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

@@ -1,7 +1,6 @@
 package Main;
 
 import modele.jdbc.Jdbc;
-import vue.*;
 import controleur.*;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -26,33 +25,33 @@ public class Main {
         
         try {
 
-			input = new FileInputStream("src/config/accesBdd.properties");
+		input = new FileInputStream("src/config/accesBdd.properties");
 
-			// load a properties file
-			prop.load(input);
+		// load a properties file
+		prop.load(input);
 
-			// get the property value and print it out
-			String driver = prop.getProperty("sgbd.driver");
-			String jdbc = prop.getProperty("sgbd.jdbc");
-			String pass = prop.getProperty("sgbd.pass");
-                        String databasename = prop.getProperty("sgbd.databasename");
-                        String login = prop.getProperty("sgbd.login");
-                        String password = prop.getProperty("sgbd.password");
+		// get the property value and print it out
+		String driver = prop.getProperty("sgbd.driver");
+		String jdbc = prop.getProperty("sgbd.jdbc");
+		String pass = prop.getProperty("sgbd.pass");
+                String databasename = prop.getProperty("sgbd.databasename");
+                String login = prop.getProperty("sgbd.login");
+                String password = prop.getProperty("sgbd.password");
                         
-                        Jdbc.creer(driver,jdbc,pass,databasename,login,password);
+                Jdbc.creer(driver,jdbc,pass,databasename,login,password);
 			
 
-		} catch (final IOException ex) {
-			ex.printStackTrace();
-		} finally {
-			if (input != null) {
-				try {
-					input.close();
-				} catch (final IOException e) {
-					e.printStackTrace();
-				}
-			}
+	} catch (final IOException ex) {
+            ex.printStackTrace();
+	} finally {
+            if (input != null) {
+		try {
+                    input.close();
+		} catch (final IOException e) {
+                    e.printStackTrace();
 		}
+            }
+	}
         
         CtrlPrincipal ctrlPrincipal;
         

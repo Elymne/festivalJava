@@ -5,6 +5,7 @@
  */
 package vue;
 
+import javax.swing.JButton;
 import javax.swing.JTextField;
 
 /**
@@ -29,6 +30,10 @@ public class VueAuthentification extends VueGenerique {
     public JTextField getJTextFieldMdp(){
         return jTextFieldMdp;
     }
+    
+    public JButton getJButtonConnexion(){
+        return jButtonConnexion;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,29 +46,27 @@ public class VueAuthentification extends VueGenerique {
 
         jTextFieldLogin = new javax.swing.JTextField();
         jTextFieldMdp = new javax.swing.JTextField();
-        jButtonValidation = new javax.swing.JButton();
+        jButtonConnexion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextFieldLogin.setText("Login");
         jTextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldLoginActionPerformed(evt);
             }
         });
 
-        jTextFieldMdp.setText("Mot de passe");
         jTextFieldMdp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldMdpActionPerformed(evt);
             }
         });
 
-        jButtonValidation.setText("Valider");
-        jButtonValidation.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConnexion.setText("Valider");
+        jButtonConnexion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonValidationActionPerformed(evt);
+                jButtonConnexionActionPerformed(evt);
             }
         });
 
@@ -77,10 +80,9 @@ public class VueAuthentification extends VueGenerique {
                 .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addComponent(jButtonValidation)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextFieldMdp, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                        .addComponent(jTextFieldLogin)))
+                    .addComponent(jTextFieldMdp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                    .addComponent(jTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonConnexion, javax.swing.GroupLayout.Alignment.LEADING))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,9 +94,9 @@ public class VueAuthentification extends VueGenerique {
                 .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextFieldMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonValidation)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonConnexion)
+                .addContainerGap(91, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,9 +110,9 @@ public class VueAuthentification extends VueGenerique {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldMdpActionPerformed
 
-    private void jButtonValidationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValidationActionPerformed
+    private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonValidationActionPerformed
+    }//GEN-LAST:event_jButtonConnexionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,7 +150,7 @@ public class VueAuthentification extends VueGenerique {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonValidation;
+    private javax.swing.JButton jButtonConnexion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextFieldLogin;
     private javax.swing.JTextField jTextFieldMdp;

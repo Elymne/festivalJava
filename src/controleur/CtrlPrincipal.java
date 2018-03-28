@@ -15,12 +15,11 @@ public class CtrlPrincipal {
     private CtrlAuthentification ctrlAuthentification = null;
     
     public void action(){
-        if(ctrlMenu == null){
-            ctrlMenu = new CtrlMenu(this);
-            ctrlMenu.getVue().setTitle("Festival");
+        if(ctrlAuthentification == null){
+            ctrlAuthentification = new CtrlAuthentification(this);
         }
-        ctrlMenu.getVue().setEnabled(true);
-        ctrlMenu.getVue().setVisible(true);
+        ctrlAuthentification.getVue().setEnabled(true);
+        ctrlAuthentification.getVue().setVisible(true);
     }
     
     // Appel d'un constructeur sans échange de variable
@@ -28,9 +27,6 @@ public class CtrlPrincipal {
         switch (action) {
             case MENU_REPRESENTATION: // activation de vuePresence depuis vueMenu
                 MenuRepresentation();
-                break;
-            case MENU_AUTHENTIFICATION: // activation de vuePresence depuis vueMenu
-                /*MenuAuthentification();*/
                 break;
             case MENU_REPRESENTATION_QUITTER:    // retour à vueMenu depuis la vuePresence
                 menuQuitterRepresentation();
@@ -40,7 +36,13 @@ public class CtrlPrincipal {
                 break;
             case REPRESENTATION_VENTE_QUITTER:
                 representationVenteQuitter();
-                break;       
+                break;
+            case MENU_DECONNEXION:
+                deconnexionMenu();
+                break;
+            case MENU_CONNEXION:
+                connexionMenu();
+                break;
         }
 
     }
@@ -50,7 +52,7 @@ public class CtrlPrincipal {
         switch (action){
             case REPRESENTATION_VENTE: //activation vueVente depuis la vueRepresentation
                 representationVente(var);
-                break; 
+                break;
         }
     }
     
@@ -82,16 +84,6 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true); // Inutile je crois
     }
-    /*
-        private void MenuAuthentification(){
-        if(ctrlAuthentification == null){
-            ctrlAuthentification = new CtrlAuthentification(this);
-        }
-        ctrlAuthentification.getVue().setVisible(false);
-        ctrlMenu.getVue().setEnabled(true);
-        ctrlMenu.getVue().setVisible(true); // Inutile je crois
-    }
-    */
     
     private void representationVente(String groupe){
         if(ctrlLesVentes == null){
@@ -109,6 +101,26 @@ public class CtrlPrincipal {
         ctrlLesVentes = null;
         ctrlLesRepresentations.getVue().setEnabled(true);
         ctrlLesRepresentations.getVue().setVisible(true); // Inutile je crois
+    }
+    
+    private void connexionMenu(){
+        if(ctrlMenu == null){
+            ctrlMenu = new CtrlMenu(this);
+        }
+        ctrlAuthentification.getVue().setVisible(false);
+        ctrlAuthentification = null;
+        ctrlMenu.getVue().setEnabled(true);
+        ctrlMenu.getVue().setVisible(true);
+    }
+    
+    private void deconnexionMenu(){
+        if(ctrlAuthentification == null){
+            ctrlAuthentification = new CtrlAuthentification(this);
+        }
+        ctrlMenu.getVue().setVisible(false);
+        ctrlMenu = null;
+        ctrlAuthentification.getVue().setEnabled(true);
+        ctrlAuthentification.getVue().setVisible(true);
     }
     
 }
