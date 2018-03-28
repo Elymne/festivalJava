@@ -118,18 +118,21 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
                 if(uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo() < Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText())){
                     JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ (uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo()),"Inane error",JOptionPane.ERROR_MESSAGE);
                 }else{
-                    if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    try {
-                        venteSoustraire();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(CtrlLesVentes.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    } else {
+                    if(Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText()) < 0){
+                        JOptionPane.showMessageDialog(null,"Il n'est pas possible d'insérer une valeur inférieur à 0","Inane error",JOptionPane.ERROR_MESSAGE);
+                    }else{
+                        if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            try {
+                                venteSoustraire();
+                            } catch (SQLException ex) {
+                                Logger.getLogger(CtrlLesVentes.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }else{
                         // no option
+                        }
                     }
                 }
-            }
-            
+            }    
         }
     }
 

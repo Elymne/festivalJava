@@ -5,20 +5,29 @@
  */
 package vue;
 
+import javax.swing.JTextField;
+
 /**
  *
  * @author btssio
  */
-public class VueAuthentification extends javax.swing.JFrame {
+public class VueAuthentification extends VueGenerique {
 
     /**
      * Creates new form VueAuthentification
      */
-    public VueAuthentification() {
-        initComponents();
-        
-        
-        
+    public VueAuthentification()
+    {
+        super();
+        initComponents();          
+    }
+    
+    public JTextField getJTextFieldLogin(){
+        return jTextFieldLogin;
+    }
+    
+    public JTextField getJTextFieldMdp(){
+        return jTextFieldMdp;
     }
 
     /**

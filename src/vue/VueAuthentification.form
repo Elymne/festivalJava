@@ -28,10 +28,8 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Component id="jLabel1" pref="209" max="32767" attributes="0"/>
                   <Component id="jButtonValidation" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jTextFieldMdp" pref="209" max="32767" attributes="0"/>
-                      <Component id="jTextFieldLogin" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jTextFieldMdp" alignment="0" pref="209" max="32767" attributes="0"/>
+                  <Component id="jTextFieldLogin" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="96" max="32767" attributes="0"/>
           </Group>

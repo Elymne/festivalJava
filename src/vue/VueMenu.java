@@ -22,7 +22,7 @@ public class VueMenu extends VueGenerique {
     }
     
     public JButton getJButtonAuthentification(){
-        return jButtonAuthentification;
+        return jButtonDeconnection;
     }
 
     
@@ -35,7 +35,7 @@ public class VueMenu extends VueGenerique {
         jButtonQuitter = new javax.swing.JButton();
         jButtonRepresentation = new javax.swing.JButton();
         jLabelMenu = new javax.swing.JLabel();
-        jButtonAuthentification = new javax.swing.JButton();
+        jButtonDeconnection = new javax.swing.JButton();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
         jFrame1.getContentPane().setLayout(jFrame1Layout);
@@ -75,7 +75,8 @@ public class VueMenu extends VueGenerique {
         jLabelMenu.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jLabelMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jButtonAuthentification.setText("Authentification Locale");
+        jButtonDeconnection.setForeground(javax.swing.UIManager.getDefaults().getColor("nb.bugtracking.conflict.color"));
+        jButtonDeconnection.setText("Se déconnecter");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,18 +89,20 @@ public class VueMenu extends VueGenerique {
                 .addContainerGap(312, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButtonRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonAuthentification, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonDeconnection))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAuthentification, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(297, 297, 297)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonDeconnection)
+                .addGap(27, 27, 27)
+                .addComponent(jButtonRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(243, 243, 243)
                 .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -120,7 +123,7 @@ public class VueMenu extends VueGenerique {
     }   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAuthentification;
+    private javax.swing.JButton jButtonDeconnection;
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRepresentation;
     private javax.swing.JComboBox<String> jComboBox1;
