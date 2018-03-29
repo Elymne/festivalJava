@@ -40,14 +40,21 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
             input = new FileInputStream("src/config/accesBdd.properties");
             // load a properties file
             prop.load(input);
-            // get the property value and print it out
-            String loggin = prop.getProperty("user.loggin");
-            String password = prop.getProperty("user.password");
-            if( (((VueAuthentification) vue).getJTextFieldLogin().getText()) != loggin || (((VueAuthentification) vue).getJTextFieldMdp().getText()) != password ){
-                JOptionPane.showMessageDialog(null,"Mot de compte ou mot de passe incorecte","Inane error",JOptionPane.ERROR_MESSAGE);
+            if( ((VueAuthentification) vue).getJTextFieldLogin().getText().equals( "" )){
+                JOptionPane.showMessageDialog(null,"Renseignez le Loggin","Inane error",JOptionPane.ERROR_MESSAGE);
             }else{
-                accesMenu();
+                if( ((VueAuthentification) vue).getJTextFieldMdp().getText().equals( "" )){
+                    JOptionPane.showMessageDialog(null,"Renseignez le Mot de Passe","Inane error",JOptionPane.ERROR_MESSAGE);
+                }else{
+                    if( prop.getProperty("user.loggin").equals( ((VueAuthentification) vue).getJTextFieldLogin().getText() ) 
+                        && prop.getProperty("user.password").equals(((VueAuthentification) vue).getJTextFieldMdp().getText()) ){     
+                        accesMenu();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Mot de compte ou mot de passe incorecte","Inane error",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
             }
+            
             
         } catch (final IOException ex) {
             ex.printStackTrace();
@@ -63,7 +70,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
     }
     
     public void accesMenu(){
-        this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE);
+        this.getCtrlPrincipal().action(EnumAction.MENU_CONNEXION);
     }
 
     @Override
@@ -103,7 +110,9 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        if (e.getSource().equals(((VueAuthentification) vue).getJButtonConnexion())){
+           verification();
+       }
     }
 
     @Override
@@ -113,10 +122,6 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
 
     @Override
     public void mousePressed(MouseEvent e) {
-       if (e.getSource().equals(((VueAuthentification) vue).getJButtonConnexion())){
-           verification();
-           System.out.println("MDR SA MARSH OU PA ?");
-       }
     }
 
     @Override

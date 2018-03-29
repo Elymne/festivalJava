@@ -28,7 +28,7 @@ public class VueAuthentification extends VueGenerique {
     }
     
     public JTextField getJTextFieldMdp(){
-        return jTextFieldMdp;
+        return jPasswordFieldPassword;
     }
     
     public JButton getJButtonConnexion(){
@@ -45,21 +45,15 @@ public class VueAuthentification extends VueGenerique {
     private void initComponents() {
 
         jTextFieldLogin = new javax.swing.JTextField();
-        jTextFieldMdp = new javax.swing.JTextField();
         jButtonConnexion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordFieldPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextFieldLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldLoginActionPerformed(evt);
-            }
-        });
-
-        jTextFieldMdp.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldMdpActionPerformed(evt);
             }
         });
 
@@ -80,9 +74,9 @@ public class VueAuthentification extends VueGenerique {
                 .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addComponent(jTextFieldMdp, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
                     .addComponent(jTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonConnexion, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jButtonConnexion, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPasswordFieldPassword))
                 .addContainerGap(96, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,9 +86,9 @@ public class VueAuthentification extends VueGenerique {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldMdp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(jButtonConnexion)
                 .addContainerGap(91, Short.MAX_VALUE))
         );
@@ -105,10 +99,6 @@ public class VueAuthentification extends VueGenerique {
     private void jTextFieldLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
-
-    private void jTextFieldMdpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMdpActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldMdpActionPerformed
 
     private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
         // TODO add your handling code here:
@@ -152,7 +142,7 @@ public class VueAuthentification extends VueGenerique {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnexion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JTextField jTextFieldLogin;
-    private javax.swing.JTextField jTextFieldMdp;
     // End of variables declaration//GEN-END:variables
 }
