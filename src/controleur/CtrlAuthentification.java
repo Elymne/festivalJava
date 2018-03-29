@@ -15,13 +15,19 @@ import vue.VueAuthentification;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Properties;
 import javax.swing.JOptionPane;
+import modele.dao.*;
+import modele.metier.*;
 /**
  *
  * @author btssio
  */
 public class CtrlAuthentification extends CtrlGenerique implements WindowListener,ActionListener,MouseListener{
+    
+    private final Authentification daoAuthentification = new Authentification();
+    private ArrayList<Utilisateur> lesUtilisateurs;
     
     public CtrlAuthentification(CtrlPrincipal ctrlPrincipal){
         super(ctrlPrincipal);
@@ -41,12 +47,11 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         }
     }
     
-    public void verification(){
+    public void verificationProperties(){
         final Properties prop = new Properties();
         InputStream input = null;
         try{
             
-        
             input = new FileInputStream("src/config/accesBdd.properties");
             // load a properties file
             prop.load(input);
@@ -63,9 +68,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
                         JOptionPane.showMessageDialog(null,"Mot de compte ou mot de passe incorecte","Inane error",JOptionPane.ERROR_MESSAGE);
                     }
                 }
-            }
-            
-            
+            }  
         } catch (final IOException ex) {
             ex.printStackTrace();
 	} finally {
@@ -77,6 +80,27 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
 		}
             }
 	}
+    }
+    
+    public void verificationBDD(){
+        
+        try{
+            if( ((VueAuthentification) vue).getJTextFieldLogin().getText().equals( "" )){
+                JOptionPane.showMessageDialog(null,"Renseignez le Loggin","Inane error",JOptionPane.ERROR_MESSAGE);
+            }else{
+                Utilisateur utilisateur = Authentification.selectOneByName(((VueAuthentification) vue).getJTextFieldLogin().getText());
+                if( ((VueAuthentification) vue).getJTextFieldMdp().getText().equals( "" )){
+                    JOptionPane.showMessageDialog(null,"Renseignez le Mot de Passe","Inane error",JOptionPane.ERROR_MESSAGE);
+                }else{
+                    if( utilisateur.getPseudo().equals( ((VueAuthentification) vue).getJTextFieldLogin().getText() ) 
+                        && utilisateur.getPassword().equals(((VueAuthentification) vue).getJTextFieldMdp().getText()) ){     
+                        accesMenu();
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Mot de compte ou mot de passe incorecte","Inane error",JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void accesMenu(){
@@ -121,7 +145,8 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(((VueAuthentification) vue).getJButtonConnexion())){
-           verification();
+           //verificationProperties();
+           verificationBDD();
        } 
        if(e.getSource().equals(((VueAuthentification) vue).getJButtonQuitter())){
            quitterMenu();
