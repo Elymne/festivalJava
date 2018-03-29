@@ -34,6 +34,10 @@ public class VueAuthentification extends VueGenerique {
     public JButton getJButtonConnexion(){
         return jButtonConnexion;
     }
+    
+    public JButton getJButtonQuitter(){
+        return jButtonQuitter;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +52,7 @@ public class VueAuthentification extends VueGenerique {
         jButtonConnexion = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPasswordFieldPassword = new javax.swing.JPasswordField();
+        jButtonQuitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,6 +71,8 @@ public class VueAuthentification extends VueGenerique {
 
         jLabel1.setText("Authentification locale");
 
+        jButtonQuitter.setText("Quitter l'application");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,6 +85,10 @@ public class VueAuthentification extends VueGenerique {
                     .addComponent(jButtonConnexion, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPasswordFieldPassword))
                 .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonQuitter)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +101,9 @@ public class VueAuthentification extends VueGenerique {
                 .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jButtonConnexion)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jButtonQuitter)
+                .addContainerGap())
         );
 
         pack();
@@ -141,6 +154,7 @@ public class VueAuthentification extends VueGenerique {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnexion;
+    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JTextField jTextFieldLogin;

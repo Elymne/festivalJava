@@ -17,7 +17,6 @@ public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowLis
         super(ctrlPrincipal);
         vue = new VueMenu();
         vue.addWindowListener(this);
-        getVue().getJButtonQuitter().addActionListener(this);
         getVue().getJButtonRepresentation().addActionListener(this);
         getVue().getJButtonAuthentification().addActionListener(this);
     }
@@ -56,15 +55,12 @@ public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(getVue().getJButtonQuitter())){
-            quitterMenu();
-        }else{
-            if(e.getSource().equals(getVue().getJButtonRepresentation())){
+
+        if(e.getSource().equals(getVue().getJButtonRepresentation())){
             representationAcces();
-            }else{
-                if(e.getSource().equals(getVue().getJButtonAuthentification())){
-                    deconnexionMenu();
-                }   
+        }else{
+            if(e.getSource().equals(getVue().getJButtonAuthentification())){
+                deconnexionMenu();
             }
         }
     }

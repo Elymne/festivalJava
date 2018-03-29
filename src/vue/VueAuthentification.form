@@ -33,6 +33,11 @@
               </Group>
               <EmptySpace pref="96" max="32767" attributes="0"/>
           </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jButtonQuitter" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -46,7 +51,9 @@
               <Component id="jPasswordFieldPassword" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jButtonConnexion" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="91" max="32767" attributes="0"/>
+              <EmptySpace pref="54" max="32767" attributes="0"/>
+              <Component id="jButtonQuitter" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,6 +78,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="jPasswordFieldPassword">
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonQuitter">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Quitter l&apos;application"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

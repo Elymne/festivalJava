@@ -29,6 +29,16 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         
         vue.addWindowListener(this);
         ((VueAuthentification) vue).getJButtonConnexion().addActionListener(this);
+        ((VueAuthentification) vue).getJButtonQuitter().addActionListener(this);
+    }
+    
+        public void quitterMenu(){
+        //  2 chaines de caractère, une pour l'affichage du texte, l'autre pour nommer le menu.
+        int  a = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "Festival",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (a == JOptionPane.YES_OPTION) {
+            // mettre fin à l'application
+            this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
+        }
     }
     
     public void verification(){
@@ -112,7 +122,13 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(((VueAuthentification) vue).getJButtonConnexion())){
            verification();
+       } 
+       if(e.getSource().equals(((VueAuthentification) vue).getJButtonQuitter())){
+           quitterMenu();
        }
+           
+            
+        
     }
 
     @Override

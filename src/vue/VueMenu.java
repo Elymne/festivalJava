@@ -13,10 +13,6 @@ public class VueMenu extends VueGenerique {
         initComponents();
     }
     
-    public JButton getJButtonQuitter(){
-        return jButtonQuitter;
-    }
-    
     public JButton getJButtonRepresentation(){
         return jButtonRepresentation;
     }
@@ -32,7 +28,6 @@ public class VueMenu extends VueGenerique {
 
         jFrame1 = new javax.swing.JFrame();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButtonQuitter = new javax.swing.JButton();
         jButtonRepresentation = new javax.swing.JButton();
         jLabelMenu = new javax.swing.JLabel();
         jButtonDeconnection = new javax.swing.JButton();
@@ -52,13 +47,6 @@ public class VueMenu extends VueGenerique {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
-
-        jButtonQuitter.setText("Quitter");
-        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonQuitterActionPerformed(evt);
-            }
-        });
 
         jButtonRepresentation.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButtonRepresentation.setText("Representation");
@@ -84,35 +72,26 @@ public class VueMenu extends VueGenerique {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonQuitter)
-                .addContainerGap(312, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(jButtonRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 202, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonDeconnection))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonDeconnection)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonDeconnection)
-                .addGap(27, 27, 27)
+                .addGap(64, 64, 64)
                 .addComponent(jButtonRepresentation, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(243, 243, 243)
-                .addComponent(jButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addComponent(jButtonDeconnection)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     private void jButtonRepresentationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepresentationActionPerformed
         // TODO add your handling code here:
@@ -124,7 +103,6 @@ public class VueMenu extends VueGenerique {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDeconnection;
-    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRepresentation;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFrame jFrame1;
