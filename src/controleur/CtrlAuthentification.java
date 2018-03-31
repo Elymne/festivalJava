@@ -95,6 +95,8 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
                     if( utilisateur.getPseudo().equals( ((VueAuthentification) vue).getJTextFieldLogin().getText() ) 
                         && utilisateur.getPassword().equals(((VueAuthentification) vue).getJTextFieldMdp().getText()) ){     
                         accesMenu();
+                    }else{
+                        JOptionPane.showMessageDialog(null,"Mot de compte ou mot de passe incorecte","Inane error",JOptionPane.ERROR_MESSAGE);
                     }
                 }
             }
