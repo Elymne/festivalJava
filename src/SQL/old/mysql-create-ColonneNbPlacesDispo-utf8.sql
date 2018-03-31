@@ -1,1 +1,0 @@
-ALTER TABLE `representation` ADD `NbPlacesDispo` MEDIUMINT NULL DEFAULT '-1' AFTER `id_groupe`;
