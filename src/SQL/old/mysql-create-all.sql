@@ -1,23 +1,15 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- * Author:  Elymne
- * Created: 29 mars 2018
- */
-
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 31, 2018 at 11:38 AM
--- Server version: 5.7.14
--- PHP Version: 7.0.10
+-- Hôte : 127.0.0.1:3306
+-- Généré le :  jeu. 19 avr. 2018 à 13:31
+-- Version du serveur :  5.7.21
+-- Version de PHP :  5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -27,13 +19,16 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `festivalbilleterie`
+-- Base de données :  `festivalbilleterie`
 --
+CREATE DATABASE IF NOT EXISTS `festivalbilletterie` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `festivalbilletterie`;
 
 DELIMITER $$
 --
--- Procedures
+-- Procédures
 --
+DROP PROCEDURE IF EXISTS `user_selectall`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `user_selectall` ()  BEGIN
   DECLARE EXIT HANDLER FOR NOT FOUND INSERT INTO LOG values (numEmp,'employe nontrouve');
   SELECT * FROM user;
@@ -44,18 +39,22 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `attribution`
+-- Structure de la table `attribution`
 --
 
-CREATE TABLE `attribution` (
+DROP TABLE IF EXISTS `attribution`;
+CREATE TABLE IF NOT EXISTS `attribution` (
   `idEtab` char(8) NOT NULL,
   `idTypeChambre` char(2) NOT NULL,
   `idGroupe` char(4) NOT NULL,
-  `nombreChambres` int(11) NOT NULL
+  `nombreChambres` int(11) NOT NULL,
+  PRIMARY KEY (`idEtab`,`idTypeChambre`,`idGroupe`),
+  KEY `idTypeChambre` (`idTypeChambre`),
+  KEY `idGroupe` (`idGroupe`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `attribution`
+-- Déchargement des données de la table `attribution`
 --
 
 INSERT INTO `attribution` (`idEtab`, `idTypeChambre`, `idGroupe`, `nombreChambres`) VALUES
@@ -75,10 +74,11 @@ INSERT INTO `attribution` (`idEtab`, `idTypeChambre`, `idGroupe`, `nombreChambre
 -- --------------------------------------------------------
 
 --
--- Table structure for table `etablissement`
+-- Structure de la table `etablissement`
 --
 
-CREATE TABLE `etablissement` (
+DROP TABLE IF EXISTS `etablissement`;
+CREATE TABLE IF NOT EXISTS `etablissement` (
   `id` char(8) NOT NULL,
   `nom` varchar(45) NOT NULL,
   `adresseRue` varchar(45) NOT NULL,
@@ -89,11 +89,12 @@ CREATE TABLE `etablissement` (
   `type` tinyint(4) NOT NULL,
   `civiliteResponsable` varchar(12) NOT NULL,
   `nomResponsable` varchar(25) NOT NULL,
-  `prenomResponsable` varchar(25) DEFAULT NULL
+  `prenomResponsable` varchar(25) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `etablissement`
+-- Déchargement des données de la table `etablissement`
 --
 
 INSERT INTO `etablissement` (`id`, `nom`, `adresseRue`, `codePostal`, `ville`, `tel`, `adresseElectronique`, `type`, `civiliteResponsable`, `nomResponsable`, `prenomResponsable`) VALUES
@@ -105,21 +106,23 @@ INSERT INTO `etablissement` (`id`, `nom`, `adresseRue`, `codePostal`, `ville`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `groupe`
+-- Structure de la table `groupe`
 --
 
-CREATE TABLE `groupe` (
+DROP TABLE IF EXISTS `groupe`;
+CREATE TABLE IF NOT EXISTS `groupe` (
   `id` char(4) NOT NULL,
   `nom` varchar(40) NOT NULL,
   `identiteResponsable` varchar(40) DEFAULT NULL,
   `adressePostale` varchar(120) DEFAULT NULL,
   `nombrePersonnes` int(11) NOT NULL,
   `nomPays` varchar(40) NOT NULL,
-  `hebergement` char(1) NOT NULL
+  `hebergement` char(1) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `groupe`
+-- Déchargement des données de la table `groupe`
 --
 
 INSERT INTO `groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nombrePersonnes`, `nomPays`, `hebergement`) VALUES
@@ -171,18 +174,20 @@ INSERT INTO `groupe` (`id`, `nom`, `identiteResponsable`, `adressePostale`, `nom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `lieu`
+-- Structure de la table `lieu`
 --
 
-CREATE TABLE `lieu` (
+DROP TABLE IF EXISTS `lieu`;
+CREATE TABLE IF NOT EXISTS `lieu` (
   `id` int(11) NOT NULL,
   `nom` varchar(100) DEFAULT NULL,
   `adr` varchar(100) DEFAULT NULL,
-  `capacite` int(11) DEFAULT NULL
+  `capacite` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `lieu`
+-- Déchargement des données de la table `lieu`
 --
 
 INSERT INTO `lieu` (`id`, `nom`, `adr`, `capacite`) VALUES
@@ -194,17 +199,20 @@ INSERT INTO `lieu` (`id`, `nom`, `adr`, `capacite`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `offre`
+-- Structure de la table `offre`
 --
 
-CREATE TABLE `offre` (
+DROP TABLE IF EXISTS `offre`;
+CREATE TABLE IF NOT EXISTS `offre` (
   `idEtab` char(8) NOT NULL,
   `idTypeChambre` char(2) NOT NULL,
-  `nombreChambres` int(11) NOT NULL
+  `nombreChambres` int(11) NOT NULL,
+  PRIMARY KEY (`idEtab`,`idTypeChambre`),
+  KEY `idTypeChambre` (`idTypeChambre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `offre`
+-- Déchargement des données de la table `offre`
 --
 
 INSERT INTO `offre` (`idEtab`, `idTypeChambre`, `nombreChambres`) VALUES
@@ -220,21 +228,25 @@ INSERT INTO `offre` (`idEtab`, `idTypeChambre`, `nombreChambres`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `representation`
+-- Structure de la table `representation`
 --
 
-CREATE TABLE `representation` (
-  `id_rep` int(10) UNSIGNED NOT NULL,
+DROP TABLE IF EXISTS `representation`;
+CREATE TABLE IF NOT EXISTS `representation` (
+  `id_rep` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_lieu` int(11) DEFAULT NULL,
   `id_groupe` varchar(4) DEFAULT NULL,
   `NbPlacesDispo` mediumint(9) DEFAULT '-1',
   `date_rep` date DEFAULT NULL,
   `heure_deb` time DEFAULT NULL,
-  `heure_fin` time DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `heure_fin` time DEFAULT NULL,
+  PRIMARY KEY (`id_rep`),
+  KEY `fk_representation_lieu` (`id_lieu`),
+  KEY `fk_representation_groupe` (`id_groupe`)
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `representation`
+-- Déchargement des données de la table `representation`
 --
 
 INSERT INTO `representation` (`id_rep`, `id_lieu`, `id_groupe`, `NbPlacesDispo`, `date_rep`, `heure_deb`, `heure_fin`) VALUES
@@ -268,16 +280,18 @@ INSERT INTO `representation` (`id_rep`, `id_lieu`, `id_groupe`, `NbPlacesDispo`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `typechambre`
+-- Structure de la table `typechambre`
 --
 
-CREATE TABLE `typechambre` (
+DROP TABLE IF EXISTS `typechambre`;
+CREATE TABLE IF NOT EXISTS `typechambre` (
   `id` char(2) NOT NULL,
-  `libelle` varchar(15) NOT NULL
+  `libelle` varchar(15) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `typechambre`
+-- Déchargement des données de la table `typechambre`
 --
 
 INSERT INTO `typechambre` (`id`, `libelle`) VALUES
@@ -290,17 +304,20 @@ INSERT INTO `typechambre` (`id`, `libelle`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Structure de la table `user`
 --
 
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `loggin` varchar(30) NOT NULL,
-  `password` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `password` varchar(30) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `loggin` (`loggin`(20))
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `user`
+-- Déchargement des données de la table `user`
 --
 
 INSERT INTO `user` (`id`, `loggin`, `password`) VALUES
@@ -308,101 +325,28 @@ INSERT INTO `user` (`id`, `loggin`, `password`) VALUES
 (2, 'slam2', 'slam2');
 
 --
--- Indexes for dumped tables
+-- Contraintes pour les tables déchargées
 --
 
 --
--- Indexes for table `attribution`
---
-ALTER TABLE `attribution`
-  ADD PRIMARY KEY (`idEtab`,`idTypeChambre`,`idGroupe`),
-  ADD KEY `idTypeChambre` (`idTypeChambre`),
-  ADD KEY `idGroupe` (`idGroupe`);
-
---
--- Indexes for table `etablissement`
---
-ALTER TABLE `etablissement`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `groupe`
---
-ALTER TABLE `groupe`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `lieu`
---
-ALTER TABLE `lieu`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `offre`
---
-ALTER TABLE `offre`
-  ADD PRIMARY KEY (`idEtab`,`idTypeChambre`),
-  ADD KEY `idTypeChambre` (`idTypeChambre`);
-
---
--- Indexes for table `representation`
---
-ALTER TABLE `representation`
-  ADD PRIMARY KEY (`id_rep`),
-  ADD KEY `fk_representation_lieu` (`id_lieu`),
-  ADD KEY `fk_representation_groupe` (`id_groupe`);
-
---
--- Indexes for table `typechambre`
---
-ALTER TABLE `typechambre`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `loggin` (`loggin`(20));
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `representation`
---
-ALTER TABLE `representation`
-  MODIFY `id_rep` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `attribution`
+-- Contraintes pour la table `attribution`
 --
 ALTER TABLE `attribution`
   ADD CONSTRAINT `fk1_Attribution` FOREIGN KEY (`idGroupe`) REFERENCES `groupe` (`id`),
   ADD CONSTRAINT `fk2_Attribution` FOREIGN KEY (`idEtab`,`idTypeChambre`) REFERENCES `offre` (`idEtab`, `idTypeChambre`);
 
 --
--- Constraints for table `offre`
+-- Contraintes pour la table `offre`
 --
 ALTER TABLE `offre`
   ADD CONSTRAINT `fk1_Offre` FOREIGN KEY (`idEtab`) REFERENCES `etablissement` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk2_Offre` FOREIGN KEY (`idTypeChambre`) REFERENCES `typechambre` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
+CREATE USER 'festival'@'%' IDENTIFIED WITH mysql_native_password AS 'makemebade666';
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, FILE, INDEX, ALTER, CREATE TEMPORARY TABLES, CREATE VIEW, EVENT, TRIGGER, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON *.* TO 'festival'@'%' REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;GRANT ALL PRIVILEGES ON `festivalbilletterie`.* TO 'festival'@'%';
+
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-# Privileges for `festival`@`%`
-
-GRANT ALL PRIVILEGES ON *.* TO 'festival'@'%' WITH GRANT OPTION;
-
-GRANT ALL PRIVILEGES ON `festivalbilleterie`.* TO 'festival'@'%';

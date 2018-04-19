@@ -47,7 +47,7 @@ public class AuthentificationDaoTest {
         * @throws SQLException
         */
         public static void test0_Connexion() throws ClassNotFoundException, SQLException {
-            Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festivalbilleterie", "festival", "secret");
+            Jdbc.creer("com.mysql.jdbc.Driver", "jdbc:mysql:", "//localhost/", "festivalbilletterie", "festival", "makemebade666");
             Jdbc.getInstance().connecter();
             Connection cnx = Jdbc.getInstance().getConnexion();
         }

@@ -38,7 +38,8 @@ public class Main {
                 String login = prop.getProperty("sgbd.login");
                 String password = prop.getProperty("sgbd.password");
                         
-                Jdbc.creer(driver,jdbc,pass,databasename,login,password);
+                //Jdbc.creer(driver,jdbc,pass,databasename,login,password);
+                Jdbc.creer("com.mysql.jdbc.Driver","jdbc:mysql:","//localhost/","festivalbilletterie","festival","makemebade666");
 			
 
 	} catch (final IOException ex) {

@@ -24,7 +24,7 @@ public class Authentification {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
-        String requete = "SELECT * FROM user WHERE LOGIN= ?";
+        String requete = "SELECT * FROM user WHERE LOGGIN= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setString(1, nomUser);
         rs = pstmt.executeQuery();
@@ -54,7 +54,7 @@ public class Authentification {
     private static Utilisateur utilisateurFromResultSet(ResultSet rs) throws SQLException {
         Utilisateur clt = null;
         int id = rs.getInt("ID");
-        String loggin = rs.getString("LOGIN");
+        String loggin = rs.getString("LOGGIN");
         String password = rs.getString("PASSWORD");
         clt = new Utilisateur(id, loggin, password);
         return clt;
