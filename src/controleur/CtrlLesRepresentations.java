@@ -172,6 +172,7 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        reinitialisationGroupe();
     }
 
     @Override
