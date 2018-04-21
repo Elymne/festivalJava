@@ -30,17 +30,16 @@ public class Main {
 		// load a properties file
 		prop.load(input);
 
-		// get the property value and print it out
-		String driver = prop.getProperty("sgbd.driver");
-		String jdbc = prop.getProperty("sgbd.jdbc");
-		String pass = prop.getProperty("sgbd.pass");
-                String databasename = prop.getProperty("sgbd.databasename");
-                String login = prop.getProperty("sgbd.login");
-                String password = prop.getProperty("sgbd.password");
-                        
-                //Jdbc.creer(driver,jdbc,pass,databasename,login,password);
-                Jdbc.creer("com.mysql.jdbc.Driver","jdbc:mysql:","//localhost/","festivalbilletterie","festival","makemebade666");
-			
+		// get the property value and print it out                       
+                Jdbc.creer(
+                        prop.getProperty("sgbd.driver"),
+                        prop.getProperty("sgbd.jdbc"),
+                        prop.getProperty("sgbd.pass"),
+                        prop.getProperty("sgbd.databasename"),
+                        prop.getProperty("sgbd.loggin"),
+                        prop.getProperty("sgbd.password")
+                );
+                			
 
 	} catch (final IOException ex) {
             ex.printStackTrace();
@@ -67,7 +66,6 @@ public class Main {
         // Pour lancer l'application, instancier le contrôleur principal
         ctrlPrincipal = new CtrlPrincipal();
         ctrlPrincipal.action();
-
     }
 
 }

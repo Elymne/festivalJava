@@ -13,12 +13,19 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import vue.VueAuthentification;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modele.dao.*;
+import modele.jdbc.Jdbc;
 import modele.metier.*;
 /**
  *
@@ -36,6 +43,10 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         vue.addWindowListener(this);
         ((VueAuthentification) vue).getJButtonConnexion().addActionListener(this);
         ((VueAuthentification) vue).getJButtonQuitter().addActionListener(this);
+        ((VueAuthentification) vue).getJButtonMode().addActionListener(this);
+        
+        ((VueAuthentification) vue).getJTextFieldMode().setText("Connexion Locale");
+        
     }
     
         public void quitterMenu(){
@@ -92,7 +103,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
                 if( ((VueAuthentification) vue).getJTextFieldMdp().getText().equals( "" )){
                     JOptionPane.showMessageDialog(null,"Renseignez le Mot de Passe","Inane error",JOptionPane.ERROR_MESSAGE);
                 }else{
-                    if( utilisateur.getPseudo().equals( ((VueAuthentification) vue).getJTextFieldLogin().getText() ) 
+                    if( utilisateur.getPseudo().equals( ((VueAuthentification) vue).getJTextFieldLogin().getText()) 
                         && utilisateur.getPassword().equals(((VueAuthentification) vue).getJTextFieldMdp().getText()) ){     
                         accesMenu();
                     }else{
@@ -103,6 +114,136 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"Mot de compte ou mot de passe incorecte","Inane error",JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void connexionLocale() throws FileNotFoundException, IOException, SQLException{
+        final Properties prop = new Properties();
+        InputStream input = null;
+        
+        try {
+		input = new FileInputStream("src/config/accesBdd.properties");
+
+		// load a properties file
+		prop.load(input);
+
+		// get the property value and print it out    
+                Jdbc.getInstance().setPiloteJdbc(prop.getProperty("sgbd.driver"));
+                Jdbc.getInstance().setProtocoleJdbc(prop.getProperty("sgbd.jdbc"));
+                Jdbc.getInstance().setServeurBd(prop.getProperty("sgbd.pass"));
+                Jdbc.getInstance().setNomBd(prop.getProperty("sgbd.databasename"));
+                Jdbc.getInstance().setLoginSgbd(prop.getProperty("sgbd.loggin"));
+                Jdbc.getInstance().setMdpSgbd(prop.getProperty("sgbd.password"));
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+		}
+            }
+	}     
+        try {
+            Jdbc.getInstance().connecter();
+        } catch (ClassNotFoundException ex) {
+             JOptionPane.showMessageDialog(null, ex.getMessage(), "Lanceur Main - connexion à la BDD - pilote JDBC non trouvé", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, ex.getMessage(), "Lanceur Main - connexion à la BDD", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void connexionDistante() throws FileNotFoundException, IOException, SQLException{
+        final Properties prop = new Properties();
+        InputStream input = null;
+        
+        try {
+		input = new FileInputStream("src/config/accesBdd.properties");
+
+		// load a properties file
+		prop.load(input);
+
+		// get the property value and print it out
+                Jdbc.getInstance().setPiloteJdbc(prop.getProperty("sgbd.driverdist"));
+                Jdbc.getInstance().setProtocoleJdbc(prop.getProperty("sgbd.jdbcdist"));
+                Jdbc.getInstance().setServeurBd(prop.getProperty("sgbd.passdist"));
+                Jdbc.getInstance().setNomBd(prop.getProperty("sgbd.databasenamedist"));
+                Jdbc.getInstance().setLoginSgbd(prop.getProperty("sgbd.loggindist"));
+                Jdbc.getInstance().setMdpSgbd(prop.getProperty("sgbd.passworddist"));
+        } catch (final IOException ex) {
+            ex.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (final IOException e) {
+                    e.printStackTrace();
+		}
+            }
+	}       
+        try {
+            Jdbc.getInstance().connecter();
+        } catch (ClassNotFoundException ex) {
+             JOptionPane.showMessageDialog(null, ex.getMessage(), "Lanceur Main - connexion à la BDD - pilote JDBC non trouvé", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(null, ex.getMessage(), "Lanceur Main - connexion à la BDD", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    public void setConnexionDistante(){
+        final Properties prop = new Properties();
+	OutputStream output = null;
+
+	try {
+
+            output = new FileOutputStream("src/config/mode.properties");
+            prop.setProperty("connexion", "distante");
+            prop.store(output, null);
+        } catch (final IOException io) {
+            io.printStackTrace();
+	} finally {
+            if (output != null) {
+                try {
+                    output.close();
+		} catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+	}
+    }
+    
+    public void setConnexionLocale(){
+        final Properties prop = new Properties();
+	OutputStream output = null;
+
+	try {
+
+            output = new FileOutputStream("src/config/mode.properties");
+            prop.setProperty("connexion", "locale");
+            prop.store(output, null);
+        } catch (final IOException io) {
+            io.printStackTrace();
+	} finally {
+            if (output != null) {
+                try {
+                    output.close();
+		} catch (final IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+	}
+    }
+    
+    public String getTypeConnexion() throws FileNotFoundException, IOException{
+        
+        final Properties prop = new Properties();
+        InputStream input = null;
+	input = new FileInputStream("src/config/mode.properties");
+	prop.load(input);
+	String connexion = prop.getProperty("connexion");
+     
+        return connexion;
     }
     
     public void accesMenu(){
@@ -116,12 +257,11 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
 
     @Override
     public void windowClosing(WindowEvent e) {
-        
+        setConnexionLocale();  
     }
 
     @Override
     public void windowClosed(WindowEvent e) {
-        
     }
 
     @Override
@@ -146,16 +286,40 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(((VueAuthentification) vue).getJButtonConnexion())){
+        
+        if(e.getSource().equals(((VueAuthentification) vue).getJButtonConnexion())){
            //verificationProperties();
            verificationBDD();
        } 
        if(e.getSource().equals(((VueAuthentification) vue).getJButtonQuitter())){
+           setConnexionLocale();
            quitterMenu();
        }
-           
-            
-        
+       if(e.getSource().equals(((VueAuthentification) vue).getJButtonMode())){
+            try {
+                Jdbc.getInstance().deconnecter();
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlAuthentification.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           System.out.println("Boutton Mode");
+            try {
+                if(getTypeConnexion().equals("locale")){
+                    connexionDistante();
+                    setConnexionDistante();
+                    ((VueAuthentification) vue).getJTextFieldMode().setText("Connexion Distante");
+                }else{
+                    if(getTypeConnexion().equals("distante")){
+                        connexionLocale();
+                        setConnexionLocale();
+                        ((VueAuthentification) vue).getJTextFieldMode().setText("Connexion Locale");
+                    }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CtrlAuthentification.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(CtrlAuthentification.class.getName()).log(Level.SEVERE, null, ex);
+            }
+       }   
     }
 
     @Override

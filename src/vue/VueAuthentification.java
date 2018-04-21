@@ -31,12 +31,20 @@ public class VueAuthentification extends VueGenerique {
         return jPasswordFieldPassword;
     }
     
+    public JTextField getJTextFieldMode(){
+        return jTextFieldMode;
+    }
+    
     public JButton getJButtonConnexion(){
         return jButtonConnexion;
     }
     
     public JButton getJButtonQuitter(){
         return jButtonQuitter;
+    }
+    
+    public JButton getJButtonMode(){
+        return jButtonMode;
     }
 
     /**
@@ -53,6 +61,8 @@ public class VueAuthentification extends VueGenerique {
         jLabel1 = new javax.swing.JLabel();
         jPasswordFieldPassword = new javax.swing.JPasswordField();
         jButtonQuitter = new javax.swing.JButton();
+        jButtonMode = new javax.swing.JButton();
+        jTextFieldMode = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,27 +83,43 @@ public class VueAuthentification extends VueGenerique {
 
         jButtonQuitter.setText("Quitter l'application");
 
+        jButtonMode.setText("Changer le mode de connection");
+
+        jTextFieldMode.setEditable(false);
+        jTextFieldMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldModeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                    .addComponent(jTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonConnexion, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPasswordFieldPassword))
-                .addContainerGap(96, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonQuitter)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldMode)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 89, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                            .addComponent(jTextFieldLogin, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonConnexion, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordFieldPassword))
+                        .addGap(0, 90, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonMode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonQuitter)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addContainerGap()
+                .addComponent(jTextFieldMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -101,9 +127,11 @@ public class VueAuthentification extends VueGenerique {
                 .addComponent(jPasswordFieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jButtonConnexion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButtonQuitter)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonMode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonQuitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -116,6 +144,10 @@ public class VueAuthentification extends VueGenerique {
     private void jButtonConnexionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConnexionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConnexionActionPerformed
+
+    private void jTextFieldModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldModeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldModeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -154,9 +186,11 @@ public class VueAuthentification extends VueGenerique {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonConnexion;
+    private javax.swing.JButton jButtonMode;
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordFieldPassword;
     private javax.swing.JTextField jTextFieldLogin;
+    private javax.swing.JTextField jTextFieldMode;
     // End of variables declaration//GEN-END:variables
 }
