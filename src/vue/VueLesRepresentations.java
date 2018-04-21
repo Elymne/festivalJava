@@ -5,16 +5,15 @@
  */
 package vue;
 
-
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Sdjudrdjevic
  */
-
 
 public class VueLesRepresentations extends VueGenerique {
 
@@ -26,7 +25,7 @@ public class VueLesRepresentations extends VueGenerique {
         modeleTableRepresentation = new DefaultTableModel();
         jTableRepresentation.setModel(modeleTableRepresentation);
     }
-    
+
     public DefaultTableModel getModeleTableRepresentation() {
         return modeleTableRepresentation;
     }
@@ -34,33 +33,32 @@ public class VueLesRepresentations extends VueGenerique {
     public JTable getTableRepresentation() {
         return jTableRepresentation;
     }
-    
-    public JButton getJButtonVente(){
+
+    public JButton getJButtonVente() {
         return jButtonVente;
     }
-        
-    public JButton getJButtonRetour(){
+
+    public JButton getJButtonRetour() {
         return jButtonRetour;
     }
-    
-    
-    public JTextField getJTextFieldNom(){
+
+    public JTextField getJTextFieldNom() {
         return jTextFieldNom;
     }
-    
-    public JTextField getJTextFieldLieu(){
+
+    public JTextField getJTextFieldLieu() {
         return jTextFieldLieu;
     }
-    
-    public JTextField getJTextFieldDate(){
+
+    public JTextField getJTextFieldDate() {
         return jTextFieldDate;
     }
-    
-    public JTextField getJTextFieldHeureDebut(){
+
+    public JTextField getJTextFieldHeureDebut() {
         return jTextFieldHeureDebut;
     }
-    
-    public JTextField getJTextFieldHeureFin(){
+
+    public JTextField getJTextFieldHeureFin() {
         return jTextFieldHeureFin;
     }
 

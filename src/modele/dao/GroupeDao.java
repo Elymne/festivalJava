@@ -1,4 +1,3 @@
-
 package modele.dao;
 
 import java.sql.*;
@@ -9,8 +8,15 @@ import modele.metier.*;
 /**
  * @author Sacha Djurdjevic
  */
-public class GroupeDao{
+public class GroupeDao {
 
+    /**
+     * Lire un enrengistrement de la table <b> groupe </b>
+     *
+     * @param numGroupe
+     * @return Une variable de type groupe
+     * @throws SQLException
+     */
     public static Groupe selectOneById(String numGroupe) throws SQLException {
         Groupe groupe = null;
         ResultSet rs = null;
@@ -26,7 +32,14 @@ public class GroupeDao{
         }
         return groupe;
     }
-    
+
+    /**
+     * Lire un enrengistrement de la table <b> groupe </b>
+     *
+     * @param nomGroupe
+     * @return Une variable de type Groupe
+     * @throws SQLException
+     */
     public static Groupe selectOneByName(String nomGroupe) throws SQLException {
         Groupe groupe = null;
         ResultSet rs = null;
@@ -44,9 +57,9 @@ public class GroupeDao{
     }
 
     /**
-     * lire tous les enregistrements de la table CLIENT
+     * lire tous les enregistrements de la table <b> groupe </b>
      *
-     * @return une collection d'instances de la classe Client
+     * @return une collection d'instances de la classe Groupe
      * @throws SQLException
      */
     public static ArrayList<Groupe> selectAll() throws SQLException {
@@ -65,23 +78,22 @@ public class GroupeDao{
         }
         return lesGroupes;
     }
-    
+
     //Pas Demandé
     public int insert(Groupe objetMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     //Pas Demandé
     public int update(Integer idMetier, Groupe objetMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     //Pas Demandé
     public int delete(Integer idMetier) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
     private static Groupe groupeFromResultSet(ResultSet rs) throws SQLException {
         Groupe clt = null;
         String id = rs.getString("ID");
@@ -91,8 +103,8 @@ public class GroupeDao{
         int nbPers = rs.getInt("NOMBREPERSONNES");
         String nomPays = rs.getString("NOMPAYS");
         String hebergement = rs.getString("HEBERGEMENT");
-        clt = new Groupe(id, nom, identiteRes, adr, nbPers,nomPays,hebergement);
+        clt = new Groupe(id, nom, identiteRes, adr, nbPers, nomPays, hebergement);
         return clt;
     }
-    
+
 }

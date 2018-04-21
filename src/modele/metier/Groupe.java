@@ -1,4 +1,3 @@
-
 package modele.metier;
 
 /**
@@ -6,6 +5,7 @@ package modele.metier;
  * @author sacha djurdjevic
  */
 public class Groupe {
+
     private String id;
     private String nom;
     private String identite;
@@ -13,8 +13,18 @@ public class Groupe {
     private int nbPers;
     private String nomPays;
     private String hebergement;
-    
-    public Groupe(String id,String nom,String identite,String adresse,int nbPers,String nomPays,String hebergement){
+
+    /**
+     *
+     * @param id
+     * @param nom
+     * @param identite
+     * @param adresse
+     * @param nbPers
+     * @param nomPays
+     * @param hebergement
+     */
+    public Groupe(String id, String nom, String identite, String adresse, int nbPers, String nomPays, String hebergement) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
@@ -23,12 +33,20 @@ public class Groupe {
         this.nomPays = nomPays;
         this.hebergement = hebergement;
     }
-    
-    public Groupe(){
-        
+
+    /**
+     * Constructeur inutile?
+     */
+    public Groupe() {
+
     }
-    public String toString(){
-        return ("Groupe{Id: " + this.getId() + "\tNom: " + this.getNom() + "\tIdentite: " + this.getIdentite() + "\tAdresse: " + this.getAdresse() + "\tNbPers: " + this.getNbPers() + "\tNomPays: " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) +  "}";
+
+    /**
+     *
+     * @return Une chaine de caractères
+     */
+    public String toString() {
+        return ("Groupe{Id: " + this.getId() + "\tNom: " + this.getNom() + "\tIdentite: " + this.getIdentite() + "\tAdresse: " + this.getAdresse() + "\tNbPers: " + this.getNbPers() + "\tNomPays: " + this.getNomPays() + "\tHebergement: " + this.getHebergement()) + "}";
     }
 
     /**
@@ -128,5 +146,5 @@ public class Groupe {
     public void setHebergement(String hebergement) {
         this.hebergement = hebergement;
     }
-    
+
 }

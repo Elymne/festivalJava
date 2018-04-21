@@ -17,45 +17,44 @@ public class VueLesVentes extends VueGenerique {
     /**
      * Creates new form VueLesVentes
      */
-    public VueLesVentes()
-    {
+    public VueLesVentes() {
         super();
         initComponents();
     }
-    
-    public JTextField getjTextFieldNbPlace(){
+
+    public JTextField getjTextFieldNbPlace() {
         return jTextFieldNbPlace;
     }
-    
-    public JTextField getjTextFieldCommande(){
+
+    public JTextField getjTextFieldCommande() {
         return jTextFieldCommande;
     }
-    
-    public JButton getjButtonCommande(){
+
+    public JButton getjButtonCommande() {
         return jButtonCommande;
     }
-    
-    public JButton getJButtonRetour(){
+
+    public JButton getJButtonRetour() {
         return jButtonRetour;
     }
-    
-    public JTextField getJTextFieldNom(){
+
+    public JTextField getJTextFieldNom() {
         return jTextFieldNom;
     }
-    
-    public JTextField getJTextFieldLieu(){
+
+    public JTextField getJTextFieldLieu() {
         return jTextFieldLieu;
     }
-    
-    public JTextField getJTextFieldDate(){
+
+    public JTextField getJTextFieldDate() {
         return jTextFieldDate;
     }
-    
-    public JTextField getJTextFieldHeureDebut(){
+
+    public JTextField getJTextFieldHeureDebut() {
         return jTextFieldHeureDebut;
     }
-    
-    public JTextField getJTextFieldHeureFin(){
+
+    public JTextField getJTextFieldHeureFin() {
         return jTextFieldHeureFin;
     }
 

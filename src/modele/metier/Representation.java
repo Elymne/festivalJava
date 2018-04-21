@@ -1,4 +1,3 @@
-
 package modele.metier;
 
 import java.util.Map.Entry;
@@ -6,8 +5,8 @@ import java.util.Map.Entry;
 /**
  * @author cmetrot
  */
-
 public class Representation {
+
     private int id;
     private String dateRep;
     private String heureDebut;
@@ -15,18 +14,18 @@ public class Representation {
     private Groupe groupe;
     private Lieu lieu;
     private int nbPlacesDispo;
-    
-    public Representation(int id, String dateRep,String heureDebut, String heureFin, Groupe groupe, Lieu lieu, int nbPlacesDispo){
+
+    public Representation(int id, String dateRep, String heureDebut, String heureFin, Groupe groupe, Lieu lieu, int nbPlacesDispo) {
         this.id = id;
         this.dateRep = dateRep;
         this.heureDebut = heureDebut;
         this.heureFin = heureFin;
         this.groupe = groupe;
         this.lieu = lieu;
-       this. nbPlacesDispo = nbPlacesDispo;
+        this.nbPlacesDispo = nbPlacesDispo;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return "id = " + id + ", dateRep " + dateRep + ", heureDebut : " + heureDebut + ", heureFin : " + heureFin + ", groupe : " + groupe.toString() + ", lieu : " + lieu.toString() + " Nombre Places Restante : " + nbPlacesDispo;
     }
 
@@ -127,5 +126,5 @@ public class Representation {
     public void setNbPlacesDispo(int nbPlacesDispo) {
         this.nbPlacesDispo = nbPlacesDispo;
     }
-    
+
 }

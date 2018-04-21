@@ -1,4 +1,3 @@
-
 package controleur;
 
 import vue.VueGenerique;
@@ -8,14 +7,14 @@ import vue.VueGenerique;
  * @author Sacha Djurdjevic
  */
 public abstract class CtrlGenerique {
-    
+
     protected VueGenerique vue = null;
     protected CtrlPrincipal ctrlPrincipal = null;
-    
+
     protected CtrlGenerique(CtrlPrincipal ctrlPrincipal) {
         this.ctrlPrincipal = ctrlPrincipal;
     }
-    
+
     public VueGenerique getVue() {
         return vue;
     }
@@ -25,11 +24,11 @@ public abstract class CtrlGenerique {
     }
 
     public CtrlPrincipal getCtrlPrincipal() {
-        return (CtrlPrincipal)ctrlPrincipal;
+        return (CtrlPrincipal) ctrlPrincipal;
     }
 
     public void setCtrlPrincipal(CtrlPrincipal ctrlPrincipal) {
         this.ctrlPrincipal = ctrlPrincipal;
-    } 
-    
+    }
+
 }

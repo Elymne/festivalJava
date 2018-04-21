@@ -1,4 +1,3 @@
-
 package controleur;
 
 import java.awt.event.ActionEvent;
@@ -12,7 +11,7 @@ import vue.VueMenu;
  * @author Sacha Djurdjevic
  */
 public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowListener {
-    
+
     public CtrlMenu(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
         vue = new VueMenu();
@@ -20,46 +19,49 @@ public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowLis
         getVue().getJButtonRepresentation().addActionListener(this);
         getVue().getJButtonAuthentification().addActionListener(this);
     }
-    
-    /*
-        Fermeture de l'application lors d'une action sur le bouton "Quitter"
-    */
-    public void quitterMenu(){
-        //  2 chaines de caractère, une pour l'affichage du texte, l'autre pour nommer le menu.
-        int  a = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "Festival",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+    /**
+     * Execute la méthode action de la classe ctrlPrincipal Avec le paramètre
+     * suivant : EnumAction.MENU_QUITTER Résumé : cette méthode permet de
+     * quitter l'application
+     */
+    public void quitterMenu() {
+        int a = JOptionPane.showConfirmDialog(getVue(), "Quitter l'application\nEtes-vous sûr(e) ?", "Festival", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         if (a == JOptionPane.YES_OPTION) {
-            // mettre fin à l'application
             this.getCtrlPrincipal().action(EnumAction.MENU_QUITTER);
         }
     }
-    
-    /*
-    Ouverture Menu Reprensentation
-    */
-    public void representationAcces(){
+
+    /**
+     * Execute la méthode action de la classe ctrlPrincipal Avec le paramètre
+     * suivant : EnumAction.MENU_REPRESENTATION Résumé : cette méthode permet de
+     * passer à la vue des représentations
+     */
+    public void representationAcces() {
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION);
     }
-    /*
-    Methode Deconnexion
-    */
-    public void deconnexionMenu(){
+
+    /**
+     * Execute la méthode action de la classe ctrlPrincipal Avec le paramètre
+     * suivant : EnumAction.MENU_DECONNEXION Résumé : cette méthode permet de
+     * passer à la vue de connexion
+     */
+    public void deconnexionMenu() {
         this.getCtrlPrincipal().action(EnumAction.MENU_DECONNEXION);
     }
-    
+
     @Override
     public VueMenu getVue() {
         return (VueMenu) vue;
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource().equals(getVue().getJButtonRepresentation())){
+        if (e.getSource().equals(getVue().getJButtonRepresentation())) {
             representationAcces();
-        }else{
-            if(e.getSource().equals(getVue().getJButtonAuthentification())){
+        } else {
+            if (e.getSource().equals(getVue().getJButtonAuthentification())) {
                 deconnexionMenu();
             }
         }
@@ -93,5 +95,5 @@ public class CtrlMenu extends CtrlGenerique implements ActionListener, WindowLis
     @Override
     public void windowDeactivated(WindowEvent e) {
     }
-    
+
 }

@@ -57,7 +57,7 @@ public class AuthentificationDaoTest {
         * @throws SQLException
         */
         public static void test1_SelectUnique(String loggin) throws SQLException {
-            Utilisateur utilisateur = Authentification.selectOneByName(loggin);
+            Utilisateur utilisateur = AuthentificationDao.selectOneByName(loggin);
             System.out.println("Representation de l'utilisateur suivant : "+loggin+" : "+utilisateur.toString());
         }
         
@@ -66,7 +66,7 @@ public class AuthentificationDaoTest {
         * @throws SQLException
         */
         public static void test2_SelectMultiple() throws SQLException {
-            List<Utilisateur> desUtilisateurs = Authentification.selectAll();
+            List<Utilisateur> desUtilisateurs = AuthentificationDao.selectAll();
             System.out.println("Les utilisateurs");
             for(Utilisateur utilisateur : desUtilisateurs){
                 System.out.println("Representation : " + utilisateur);

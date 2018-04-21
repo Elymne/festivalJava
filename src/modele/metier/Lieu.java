@@ -1,4 +1,3 @@
-
 package modele.metier;
 
 import java.util.Map;
@@ -7,19 +6,19 @@ import java.util.Map;
  * @author Sacha Djurdjevic
  */
 public class Lieu {
-    
+
     private int id;
     private String nom;
     private String adr;
     private int capacite;
-    
-    public Lieu(int id, String nom, String adr, int capacite){
+
+    public Lieu(int id, String nom, String adr, int capacite) {
         this.nom = nom;
         this.id = id;
         this.adr = adr;
         this.capacite = capacite;
     }
-    
+
     @Override
     public String toString() {
         return "id : " + id + ", nom :" + nom + ",adr : " + adr + ", capacite : " + capacite;
@@ -80,7 +79,5 @@ public class Lieu {
     public void setCapacite(int capacite) {
         this.capacite = capacite;
     }
-    
-    
-    
+
 }

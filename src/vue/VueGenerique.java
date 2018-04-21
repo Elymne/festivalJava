@@ -11,7 +11,8 @@ import javax.swing.JFrame;
  *
  * @author hppc
  */
-public abstract class VueGenerique extends JFrame{
-    public VueGenerique(){
+public abstract class VueGenerique extends JFrame {
+
+    public VueGenerique() {
     }
 }

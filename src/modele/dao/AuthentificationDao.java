@@ -13,44 +13,54 @@ import modele.jdbc.Jdbc;
 import modele.metier.Utilisateur;
 
 /**
- *
- * @author Elymne
+ * @author Sacha Djurdjevic
  */
-public class Authentification {
-    
+public class AuthentificationDao {
+
+    /**
+     * Lire un enrengistrement de la table <b>user</b>
+     *
+     * @param nomUser
+     * @return Une variable de type Utilisateur
+     * @throws SQLException
+     */
     public static Utilisateur selectOneByName(String nomUser) throws SQLException {
         Utilisateur utilisateur = null;
         ResultSet rs = null;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
-        // préparer la requête
         String requete = "SELECT * FROM user WHERE LOGGIN= ?";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         pstmt.setString(1, nomUser);
         rs = pstmt.executeQuery();
         if (rs.next()) {
-            utilisateur = Authentification.utilisateurFromResultSet(rs);
+            utilisateur = AuthentificationDao.utilisateurFromResultSet(rs);
         }
         return utilisateur;
     }
-    
+
+    /**
+     * lire tous les enregistrements de la table <b>user</b>
+     *
+     * @return une collection d'instances de la classe Utilisateur
+     * @throws SQLException
+     */
     public static ArrayList<Utilisateur> selectAll() throws SQLException {
         ArrayList<Utilisateur> lesUtilisateurs = new ArrayList<Utilisateur>();
         Utilisateur utilisateur = null;
         ResultSet rs;
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
-        // préparer la requête
         String requete = "SELECT * FROM user";
         pstmt = jdbc.getConnexion().prepareStatement(requete);
         rs = pstmt.executeQuery();
         while (rs.next()) {
-            utilisateur = Authentification.utilisateurFromResultSet(rs);
+            utilisateur = AuthentificationDao.utilisateurFromResultSet(rs);
             lesUtilisateurs.add(utilisateur);
         }
         return lesUtilisateurs;
     }
-    
+
     private static Utilisateur utilisateurFromResultSet(ResultSet rs) throws SQLException {
         Utilisateur clt = null;
         int id = rs.getInt("ID");

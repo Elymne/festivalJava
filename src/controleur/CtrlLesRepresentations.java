@@ -6,52 +6,56 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
-
 import modele.dao.GroupeDao;
 import modele.dao.RepresentationDao;
 import modele.metier.Groupe;
 import modele.metier.Representation;
 import vue.VueLesRepresentations;
 
-public class CtrlLesRepresentations extends CtrlGenerique implements WindowListener,ActionListener,MouseListener{
-    
+public class CtrlLesRepresentations extends CtrlGenerique implements WindowListener, ActionListener, MouseListener {
+
     private final RepresentationDao daoRepresentation = new RepresentationDao();
     private ArrayList<Representation> lesRepresentations;
-   
+
     public CtrlLesRepresentations(CtrlPrincipal ctrlPrincipal) {
         super(ctrlPrincipal);
         vue = new VueLesRepresentations();
         representationAfficher();
-        
         vue.addWindowListener(this);
         ((VueLesRepresentations) vue).getJButtonRetour().addActionListener(this);
         ((VueLesRepresentations) vue).getJButtonVente().addActionListener(this);
         ((VueLesRepresentations) vue).getTableRepresentation().addMouseListener(this);
     }
-    
-    public void  representationQuitter(){
+
+    /**
+     * Accède à la vue VueMenu
+     */
+    public void representationQuitter() {
         ResetGroupe();
         this.getCtrlPrincipal().action(EnumAction.MENU_REPRESENTATION_QUITTER);
     }
-    
-    public void representationVente(){
+
+    /**
+     * Permet l'accès à la vue VueLesVentes
+     */
+    public void representationVente() {
         int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
         int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
-        if (ligne != -1 && colonne != -1){
-            String groupe = (String) ((VueLesRepresentations) vue).getModeleTableRepresentation().getValueAt(ligne,colonne);
-            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE,groupe);
+        if (ligne != -1 && colonne != -1) {
+            String groupe = (String) ((VueLesRepresentations) vue).getModeleTableRepresentation().getValueAt(ligne, colonne);
+            this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE, groupe);
         }
     }
-    
-    
-   public void representationAfficher() {
+
+    /**
+     * Permet d'afficher la liste de toutes les représentations
+     */
+    public void representationAfficher() {
         String msg = ""; // message à afficher en cas d'erreur
         ((VueLesRepresentations) vue).getModeleTableRepresentation().setRowCount(0);
         String[] titresColonnes = {"Groupe"};
@@ -68,17 +72,18 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
             JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
         }
     }
-   
-   public void reinitialisationGroupe(){
+
+    /**
+     * Réinitialise les Représentations
+     */
+    public void reinitialisationGroupe() {
         int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
         int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
-        if (ligne != -1 && colonne != -1){
-            String cellule = (String) ((VueLesRepresentations) vue).getModeleTableRepresentation().getValueAt(ligne,colonne);
+        if (ligne != -1 && colonne != -1) {
+            String cellule = (String) ((VueLesRepresentations) vue).getModeleTableRepresentation().getValueAt(ligne, colonne);
             try {
                 Groupe nomGroupe = GroupeDao.selectOneByName(cellule);
                 Representation representation = RepresentationDao.selectOneByIdGroupe(nomGroupe.getId());
-                
-                //Insérer les valeurs d'un groupe sélectionné.
                 ((VueLesRepresentations) vue).getJTextFieldNom().setText(representation.getGroupe().getNom());
                 ((VueLesRepresentations) vue).getJTextFieldLieu().setText(representation.getLieu().getNom());
                 ((VueLesRepresentations) vue).getJTextFieldDate().setText(representation.getDateRep());
@@ -88,29 +93,36 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
                 Logger.getLogger(CtrlLesRepresentations.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-   }
-   
-   public boolean verifCellule(){
-       boolean test;
-       int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
-       int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
-       if (ligne != -1 && colonne != -1){
-           test = true;
-       }else{
-           test = false;
-       }
-       return test;
-   }
-   
-   public void ResetGroupe(){
-                ((VueLesRepresentations) vue).getJTextFieldNom().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldLieu().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldDate().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldHeureDebut().setText("");
-                ((VueLesRepresentations) vue).getJTextFieldHeureFin().setText("");
-   }
-   
-   
+    }
+
+    /**
+     * vérification d'une sélection de représentation
+     *
+     * @return test
+     */
+    public boolean verifCellule() {
+        boolean test;
+        int ligne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedRow();
+        int colonne = ((VueLesRepresentations) vue).getTableRepresentation().getSelectedColumn();
+        if (ligne != -1 && colonne != -1) {
+            test = true;
+        } else {
+            test = false;
+        }
+        return test;
+    }
+
+    /**
+     * Permet d'insérer une chaine de caractère vide dans chaque champs de
+     * textes
+     */
+    public void ResetGroupe() {
+        ((VueLesRepresentations) vue).getJTextFieldNom().setText("");
+        ((VueLesRepresentations) vue).getJTextFieldLieu().setText("");
+        ((VueLesRepresentations) vue).getJTextFieldDate().setText("");
+        ((VueLesRepresentations) vue).getJTextFieldHeureDebut().setText("");
+        ((VueLesRepresentations) vue).getJTextFieldHeureFin().setText("");
+    }
 
     @Override
     public void windowOpened(WindowEvent e) {
@@ -144,23 +156,22 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonRetour())){
+        if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonRetour())) {
             representationQuitter();
             System.out.print("BOUTTON QUITTER");
-        }else{
-            if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonVente())){
-                if(!verifCellule()){
-                    JOptionPane.showMessageDialog(null,"Représentation non sélectionnée.","Inane error",JOptionPane.ERROR_MESSAGE);
-                }else{
+        } else {
+            if (e.getSource().equals(((VueLesRepresentations) vue).getJButtonVente())) {
+                if (!verifCellule()) {
+                    JOptionPane.showMessageDialog(null, "Représentation non sélectionnée.", "Inane error", JOptionPane.ERROR_MESSAGE);
+                } else {
                     representationVente();
-                }               
+                }
             }
         }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        reinitialisationGroupe();
     }
 
     @Override
@@ -178,5 +189,4 @@ public class CtrlLesRepresentations extends CtrlGenerique implements WindowListe
     @Override
     public void mouseExited(MouseEvent e) {
     }
-    
 }

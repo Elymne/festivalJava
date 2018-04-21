@@ -12,16 +12,15 @@ public class VueMenu extends VueGenerique {
         super();
         initComponents();
     }
-    
-    public JButton getJButtonRepresentation(){
+
+    public JButton getJButtonRepresentation() {
         return jButtonRepresentation;
     }
-    
-    public JButton getJButtonAuthentification(){
+
+    public JButton getJButtonAuthentification() {
         return jButtonDeconnection;
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -96,10 +95,10 @@ public class VueMenu extends VueGenerique {
     private void jButtonRepresentationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRepresentationActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonRepresentationActionPerformed
- 
-    private void jButtonAuthentificationActionPerformed(java.awt.event.ActionEvent evt) {                                                      
+
+    private void jButtonAuthentificationActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }   
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDeconnection;
@@ -108,37 +107,4 @@ public class VueMenu extends VueGenerique {
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabelMenu;
     // End of variables declaration//GEN-END:variables
-
-
-
-//Innutilisé
-    /*
-    public static void main(String args[]) {
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VueMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VueMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VueMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VueMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VueMenu().setVisible(true);
-            }
-        });
-    }
-    */
-
 }

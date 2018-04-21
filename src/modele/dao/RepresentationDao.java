@@ -1,4 +1,3 @@
-
 package modele.dao;
 
 import java.sql.PreparedStatement;
@@ -14,7 +13,14 @@ import modele.metier.Representation;
  * @author Sacha Djurdjevic
  */
 public class RepresentationDao {
-    
+
+    /**
+     * Lire un enrengistrement de la table <b>representation</b>
+     *
+     * @param idRep
+     * @return
+     * @throws SQLException
+     */
     public static Representation selectOneById(int idRep) throws SQLException {
         Representation representation = null;
         ResultSet rs = null;
@@ -30,7 +36,14 @@ public class RepresentationDao {
         }
         return representation;
     }
-    
+
+    /**
+     * Lire un enrengistrement de la table <b>representation</b>
+     *
+     * @param numGroupe
+     * @return
+     * @throws SQLException
+     */
     public static Representation selectOneByIdGroupe(String numGroupe) throws SQLException {
         Representation representation = null;
         ResultSet rs = null;
@@ -47,7 +60,12 @@ public class RepresentationDao {
         return representation;
     }
 
-    
+    /**
+     * lire tous les enregistrements de la table <b>representation</b>
+     *
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Representation> selectAll() throws SQLException {
         ArrayList<Representation> lesRepresentations = new ArrayList<Representation>();
         Representation lieu = null;
@@ -64,9 +82,15 @@ public class RepresentationDao {
         }
         return lesRepresentations;
     }
-    
-    public static void update(int idRep, int nbPlaces) throws SQLException
-    {
+
+    /**
+     * Modifier un enrengistrement de la table <b>representation</b>
+     *
+     * @param idRep
+     * @param nbPlaces
+     * @throws SQLException
+     */
+    public static void update(int idRep, int nbPlaces) throws SQLException {
         PreparedStatement pstmt;
         Jdbc jdbc = Jdbc.getInstance();
         // préparer la requête
@@ -76,7 +100,20 @@ public class RepresentationDao {
         pstmt.setInt(2, idRep);
         pstmt.executeUpdate();
     }
-    
+
+    /**
+     * Insérer un nouvel enrengistrement dans la table <b>representation</b>
+     *
+     * @param id_rep
+     * @param id_lieu
+     * @param id_groupe
+     * @param nbPlacesDispo
+     * @param date_rep
+     * @param heure_deb
+     * @param heure_fin
+     * @return
+     * @throws SQLException
+     */
     public static Representation insert(int id_rep, int id_lieu, String id_groupe, int nbPlacesDispo, String date_rep, String heure_deb, String heure_fin) throws SQLException {
         Representation representation = null;
         ResultSet rs = null;
@@ -98,7 +135,13 @@ public class RepresentationDao {
         }
         return representation;
     }
-    
+
+    /**
+     * Supprimer un enrengistrement dans la table <b>representation</b>
+     *
+     * @param idRep
+     * @throws SQLException
+     */
     public static void delete(int idRep) throws SQLException {
         ResultSet rs = null;
         PreparedStatement pstmt;
@@ -109,8 +152,8 @@ public class RepresentationDao {
         pstmt.setInt(1, idRep);
         rs = pstmt.executeQuery();
     }
-    
-     private static Representation RepresentationFromResultSet(ResultSet rs) throws SQLException {
+
+    private static Representation RepresentationFromResultSet(ResultSet rs) throws SQLException {
         Representation clt = null;
         int id = rs.getInt("ID_REP");
         String idGroupe = rs.getString("ID_GROUPE");
@@ -119,11 +162,11 @@ public class RepresentationDao {
         String dateRep = rs.getString("DATE_REP");
         String heureDebut = rs.getString("HEURE_DEB");
         String heureFin = rs.getString("HEURE_FIN");
-        
+
         Groupe objetGroupe = GroupeDao.selectOneById(idGroupe);
         Lieu objetLieu = LieuDao.selectOneById(idLieu);
-        clt = new Representation(id,dateRep,heureDebut,heureFin, objetGroupe,objetLieu,nbPlacesDispo);
+        clt = new Representation(id, dateRep, heureDebut, heureFin, objetGroupe, objetLieu, nbPlacesDispo);
         return clt;
     }
-    
+
 }

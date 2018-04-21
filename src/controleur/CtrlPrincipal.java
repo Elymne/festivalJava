@@ -8,93 +8,128 @@ import javax.swing.JOptionPane;
 import modele.jdbc.Jdbc;
 
 public class CtrlPrincipal {
-    
+
     private CtrlLesRepresentations ctrlLesRepresentations = null;
     private CtrlLesVentes ctrlLesVentes = null;
     private CtrlMenu ctrlMenu = null;
     private CtrlAuthentification ctrlAuthentification = null;
-    
-    public void action(){
-        if(ctrlAuthentification == null){
+
+    /**
+     * Méthode qui instancie le controleur Authentification par défaut(si il ne
+     * l'a pas été) Cette méthode est s'exécute à chaque fois que l'utilisateur
+     * lance l'application
+     */
+    public void action() {
+        if (ctrlAuthentification == null) {
             ctrlAuthentification = new CtrlAuthentification(this);
         }
         ctrlAuthentification.getVue().setEnabled(true);
         ctrlAuthentification.getVue().setVisible(true);
     }
-    
-    // Appel d'un constructeur sans échange de variable
+
+    /**
+     * Méthode qui permet d'instancier un controleur dont le constructeur
+     * n'admet pas de paramètres Le paramètre action défini quel controleur sera
+     * lancé Ex : unControleur.action(MENU_REPRESENTATION); lancera la méthode
+     * MenuRepresentation() qui elle même instancie le controleur Menu
+     *
+     * @param action
+     */
     public void action(EnumAction action) {
         switch (action) {
-            case MENU_REPRESENTATION: // activation de vuePresence depuis vueMenu
+            case MENU_REPRESENTATION: // Permet d'avoir accès à la liste des représentations
                 MenuRepresentation();
                 break;
-            case MENU_REPRESENTATION_QUITTER:    // retour à vueMenu depuis la vuePresence
+            case MENU_REPRESENTATION_QUITTER:    // Permet de revenir au menu
                 menuQuitterRepresentation();
                 break;
-            case MENU_QUITTER: // fin de l'application depuis vueMenu
+            case MENU_QUITTER: // Permet de quitter l'application
                 menuQuitter();
                 break;
-            case REPRESENTATION_VENTE_QUITTER:
+            case REPRESENTATION_VENTE_QUITTER: // Permet de revenir à la liste des représentations
                 representationVenteQuitter();
                 break;
-            case MENU_DECONNEXION:
+            case MENU_DECONNEXION: //Permet de changer d'utilisateur
                 deconnexionMenu();
                 break;
-            case MENU_CONNEXION:
+            case MENU_CONNEXION: //Permet d'avoir accès au menu depuis le controleur connexion
                 connexionMenu();
                 break;
         }
-
     }
-    
-    // Appel d'un constructeur avec appel de variable (Nombre : 1, Type : String )
-    public void action(EnumAction action, String var){
-        switch (action){
+
+    /**
+     * Méthode qui permet d'instancier un controleur dont le contructeur admet
+     * un paramètre de type String Le paramètre action défini quel controleur
+     * sera lancé Le paramètre var stocke une variable de type String qui sera
+     * envoyé au controleur
+     *
+     * @param action
+     * @param var
+     */
+    public void action(EnumAction action, String var) {
+        switch (action) {
             case REPRESENTATION_VENTE: //activation vueVente depuis la vueRepresentation
                 representationVente(var);
                 break;
         }
     }
-    
-    private void menuQuitter(){
-        try{
-            Jdbc.getInstance().deconnecter();    
-        }catch (Exception ex){
+
+    /**
+     * Méthode qui permet de se déconnecter de l'application et de quitter
+     * l'application
+     */
+    private void menuQuitter() {
+        try {
+            Jdbc.getInstance().deconnecter();
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "CtrlPrincipal - fermeture connexion BD", JOptionPane.ERROR_MESSAGE);
-        }finally{
+        } finally {
             System.exit(0);
         }
     }
-    
-    
-    
-    private void MenuRepresentation(){
-        if(ctrlLesRepresentations == null){
+
+    /**
+     * Permet de passer de la vue Menu à la vue Representation
+     */
+    private void MenuRepresentation() {
+        if (ctrlLesRepresentations == null) {
             ctrlLesRepresentations = new CtrlLesRepresentations(this);
         }
         ctrlMenu.getVue().setEnabled(false);
         ctrlLesRepresentations.getVue().setVisible(true);
     }
-    
-    private void menuQuitterRepresentation(){
-        if(ctrlMenu == null){
+
+    /**
+     * Permet de passer de la vue Representation à la vue Menu
+     */
+    private void menuQuitterRepresentation() {
+        if (ctrlMenu == null) {
             ctrlMenu = new CtrlMenu(this);
         }
         ctrlLesRepresentations.getVue().setVisible(false);
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true); // Inutile je crois
     }
-    
-    private void representationVente(String groupe){
-        if(ctrlLesVentes == null){
+
+    /**
+     * Permet de passer de la vue Representation à la vue Vente
+     *
+     * @param groupe
+     */
+    private void representationVente(String groupe) {
+        if (ctrlLesVentes == null) {
             ctrlLesVentes = new CtrlLesVentes(this, groupe);
         }
         ctrlLesVentes.getVue().setVisible(true);
         ctrlLesRepresentations.getVue().setEnabled(false);
     }
-    
-    private void representationVenteQuitter(){
-        if(ctrlLesRepresentations == null){
+
+    /**
+     * Permet de passer de la vue Vente à la vue Representation
+     */
+    private void representationVenteQuitter() {
+        if (ctrlLesRepresentations == null) {
             ctrlLesRepresentations = new CtrlLesRepresentations(this);
         }
         ctrlLesVentes.getVue().setVisible(false);
@@ -102,9 +137,12 @@ public class CtrlPrincipal {
         ctrlLesRepresentations.getVue().setEnabled(true);
         ctrlLesRepresentations.getVue().setVisible(true); // Inutile je crois
     }
-    
-    private void connexionMenu(){
-        if(ctrlMenu == null){
+
+    /**
+     * Permet de passer de la vue Authentification à la vue Menu
+     */
+    private void connexionMenu() {
+        if (ctrlMenu == null) {
             ctrlMenu = new CtrlMenu(this);
         }
         ctrlAuthentification.getVue().setVisible(false);
@@ -112,9 +150,12 @@ public class CtrlPrincipal {
         ctrlMenu.getVue().setEnabled(true);
         ctrlMenu.getVue().setVisible(true);
     }
-    
-    private void deconnexionMenu(){
-        if(ctrlAuthentification == null){
+
+    /**
+     * permet de passer de la vue Menu à la vue Authentification
+     */
+    private void deconnexionMenu() {
+        if (ctrlAuthentification == null) {
             ctrlAuthentification = new CtrlAuthentification(this);
         }
         ctrlMenu.getVue().setVisible(false);
@@ -122,5 +163,4 @@ public class CtrlPrincipal {
         ctrlAuthentification.getVue().setEnabled(true);
         ctrlAuthentification.getVue().setVisible(true);
     }
-    
 }

@@ -1,4 +1,3 @@
-
 package modele.dao;
 
 import java.sql.PreparedStatement;
@@ -12,9 +11,14 @@ import modele.metier.Lieu;
  * @author Sacha Djurdjevic
  */
 public class LieuDao {
-    
-   
-    
+
+    /**
+     * Lire un enrengistrement de la table <b>lieu</b>
+     *
+     * @param numLieu
+     * @return
+     * @throws SQLException
+     */
     public static Lieu selectOneById(int numLieu) throws SQLException {
         Lieu lieu = null;
         ResultSet rs = null;
@@ -30,7 +34,13 @@ public class LieuDao {
         }
         return lieu;
     }
-    
+
+    /**
+     * lire tous les enregistrements de la table <b>lieu</b>
+     *
+     * @return
+     * @throws SQLException
+     */
     public static ArrayList<Lieu> selectAll() throws SQLException {
         ArrayList<Lieu> lesLieux = new ArrayList<Lieu>();
         Lieu lieu = null;
@@ -47,15 +57,14 @@ public class LieuDao {
         }
         return lesLieux;
     }
-    
-    
-     private static Lieu lieuFromResultSet(ResultSet rs) throws SQLException {
+
+    private static Lieu lieuFromResultSet(ResultSet rs) throws SQLException {
         Lieu clt = null;
         int id = rs.getInt("ID");
         String nom = rs.getString("NOM");
         String adr = rs.getString("ADR");
         int capacite = rs.getInt("CAPACITE");
-        clt = new Lieu(id, nom,adr, capacite);
+        clt = new Lieu(id, nom, adr, capacite);
         return clt;
     }
 }

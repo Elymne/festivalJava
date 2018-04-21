@@ -23,23 +23,28 @@ import vue.VueLesVentes;
 
 /**
  *
- * @author btssio
+ * @author sdjurdjevic
  */
-public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,ActionListener,MouseListener{
-    
+public class CtrlLesVentes extends CtrlGenerique implements WindowListener, ActionListener, MouseListener {
+
     private final RepresentationDao daoRepresentation = new RepresentationDao();
     private Representation uneRep;
-    
+
     public CtrlLesVentes(CtrlPrincipal ctrlPrincipal, String groupe) {
         super(ctrlPrincipal);
         vue = new VueLesVentes();
         venteAfficher(groupe);
         ((VueLesVentes) vue).getJButtonRetour().addActionListener(this);
         ((VueLesVentes) vue).getjButtonCommande().addActionListener(this);
-        
+
     }
-    
-    
+
+    /**
+     * Affiche les informations du groupe sélectionné pour la vente Ainsi que le
+     * nombre de place restantes
+     *
+     * @param groupe
+     */
     public void venteAfficher(String groupe) {
         String msg = ""; // message à afficher en cas d'erreur
         try {
@@ -56,28 +61,39 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
             JOptionPane.showMessageDialog(vue, "", msg, JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void venteSoustraire() throws SQLException{
+
+    /**
+     * Permet de soustraire le nombre de place d'une représentation
+     *
+     * @throws SQLException
+     */
+    public void venteSoustraire() throws SQLException {
         int vente = Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText());
 
         RepresentationDao.update(uneRep.getId(), vente);
         reinitialisation();
         venteAfficher(uneRep.getGroupe().getNom());
     }
-    
-    public void reinitialisation(){
+
+    /**
+     * Permet de réinitialiser les données affichés Cette méthode vide donc les
+     * informations dans les champs de textes
+     */
+    public void reinitialisation() {
         ((VueLesVentes) vue).getJTextFieldNom().setText(uneRep.getGroupe().getNom());
-            ((VueLesVentes) vue).getJTextFieldLieu().setText("");
-            ((VueLesVentes) vue).getJTextFieldDate().setText("");
-            ((VueLesVentes) vue).getJTextFieldHeureDebut().setText("");
-            ((VueLesVentes) vue).getJTextFieldHeureFin().setText("");
-            ((VueLesVentes) vue).getjTextFieldNbPlace().setText("");
+        ((VueLesVentes) vue).getJTextFieldLieu().setText("");
+        ((VueLesVentes) vue).getJTextFieldDate().setText("");
+        ((VueLesVentes) vue).getJTextFieldHeureDebut().setText("");
+        ((VueLesVentes) vue).getJTextFieldHeureFin().setText("");
+        ((VueLesVentes) vue).getjTextFieldNbPlace().setText("");
     }
-    
-    public void  venteQuitter(){
+
+    /**
+     * Permet de revenir à la liste des représentations
+     */
+    public void venteQuitter() {
         reinitialisation();
         this.getCtrlPrincipal().action(EnumAction.REPRESENTATION_VENTE_QUITTER);
-        System.out.print("QUITTER VUE VENTE");
     }
 
     @Override
@@ -111,28 +127,28 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource().equals(((VueLesVentes) vue).getJButtonRetour())){
+        if (e.getSource().equals(((VueLesVentes) vue).getJButtonRetour())) {
             venteQuitter();
-        }else{
-            if(e.getSource().equals(((VueLesVentes) vue).getjButtonCommande())){
-                if(uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo() < Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText())){
-                    JOptionPane.showMessageDialog(null,"Pas assez de place disponible, veuillez saisir un nombre de place inférieur à "+ (uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo()),"Inane error",JOptionPane.ERROR_MESSAGE);
-                }else{
-                    if(Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText()) < 0){
-                        JOptionPane.showMessageDialog(null,"Il n'est pas possible d'insérer une valeur inférieur à 0","Inane error",JOptionPane.ERROR_MESSAGE);
-                    }else{
+        } else {
+            if (e.getSource().equals(((VueLesVentes) vue).getjButtonCommande())) {
+                if (uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo() < Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText())) {
+                    JOptionPane.showMessageDialog(null, "Pas assez de place disponible, veuillez saisir un nombre de place inférieur à " + (uneRep.getLieu().getCapacite() - uneRep.getNbPlacesDispo()), "Inane error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    if (Integer.parseInt(((VueLesVentes) vue).getjTextFieldCommande().getText()) < 0) {
+                        JOptionPane.showMessageDialog(null, "Il n'est pas possible d'insérer une valeur inférieur à 0", "Inane error", JOptionPane.ERROR_MESSAGE);
+                    } else {
                         if (JOptionPane.showConfirmDialog(null, "Vous êtes sûr ?", "WARNING", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                             try {
                                 venteSoustraire();
                             } catch (SQLException ex) {
                                 Logger.getLogger(CtrlLesVentes.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                        }else{
-                        // no option
+                        } else {
+                            // no option
                         }
                     }
                 }
-            }    
+            }
         }
     }
 
@@ -153,6 +169,6 @@ public class CtrlLesVentes extends CtrlGenerique  implements WindowListener,Acti
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {       
+    public void mouseExited(MouseEvent e) {
     }
 }
