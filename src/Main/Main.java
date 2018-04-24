@@ -25,7 +25,7 @@ public class Main {
 
         try {
 
-            input = new FileInputStream("src/config/accesBdd.properties");
+            input = new FileInputStream("config/accesBdd.properties");
 
             // load a properties file
             prop.load(input);

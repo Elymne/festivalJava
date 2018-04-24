@@ -133,7 +133,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         final Properties prop = new Properties();
         InputStream input = null;
         try {
-            input = new FileInputStream("src/config/accesBdd.properties");
+            input = new FileInputStream("config/accesBdd.properties");
             prop.load(input);
             Jdbc.getInstance().setPiloteJdbc(prop.getProperty("sgbd.driver"));
             Jdbc.getInstance().setProtocoleJdbc(prop.getProperty("sgbd.jdbc"));
@@ -172,7 +172,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         final Properties prop = new Properties();
         InputStream input = null;
         try {
-            input = new FileInputStream("src/config/accesBdd.properties");
+            input = new FileInputStream("config/accesBdd.properties");
             prop.load(input);
             Jdbc.getInstance().setPiloteJdbc(prop.getProperty("sgbd.driverdist"));
             Jdbc.getInstance().setProtocoleJdbc(prop.getProperty("sgbd.jdbcdist"));
@@ -208,7 +208,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         final Properties prop = new Properties();
         OutputStream output = null;
         try {
-            output = new FileOutputStream("src/config/mode.properties");
+            output = new FileOutputStream("config/mode.properties");
             prop.setProperty("connexion", "distante");
             prop.store(output, null);
         } catch (final IOException io) {
@@ -232,7 +232,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
         final Properties prop = new Properties();
         OutputStream output = null;
         try {
-            output = new FileOutputStream("src/config/mode.properties");
+            output = new FileOutputStream("config/mode.properties");
             prop.setProperty("connexion", "locale");
             prop.store(output, null);
         } catch (final IOException io) {
@@ -260,7 +260,7 @@ public class CtrlAuthentification extends CtrlGenerique implements WindowListene
     public String getTypeConnexion() throws FileNotFoundException, IOException {
         final Properties prop = new Properties();
         InputStream input = null;
-        input = new FileInputStream("src/config/mode.properties");
+        input = new FileInputStream("config/mode.properties");
         prop.load(input);
         String connexion = prop.getProperty("connexion");
         return connexion;
